@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /invoice/
+Disallow: /invoice-x7k2.html
+Sitemap: https://sarvadharatravels.in/sitemap.xml

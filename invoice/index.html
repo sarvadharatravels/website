@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow, noarchive" />
+  <meta name="googlebot" content="noindex, nofollow" />
+  <title>Invoice (private) | Sarvadhara Travels</title>
+  <meta name="description" content="Private staff invoice tool for Sarvadhara Travels. Not for public indexing." />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="theme-color" content="#7A1F2B" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f3ec;
+      --bg-cream: #faf7f2;
+      --maroon: #7A1F2B;
+      --maroon-deep: #5c1520;
+      --maroon-soft: #f3e8eb;
+      --gold: #c9a24d;
+      --gold-bright: #e0c06a;
+      --gold-deep: #a6853a;
+      --ink: #1a1214;
+      --ink-soft: #3d3336;
+      --muted: #6a6064;
+      --line: #e8dfd0;
+      --line-strong: #ddd2c0;
+      --white: #ffffff;
+      --radius: 12px;
+      --shadow: 0 12px 40px rgba(122, 31, 43, 0.10);
+      --font: "Manrope", system-ui, -apple-system, sans-serif;
+      --display: "Playfair Display", Georgia, serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      color: var(--ink);
+      background: var(--bg-cream);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--maroon); text-decoration: none; }
+    a:hover { color: var(--gold-deep); }
+    h1, h2, h3 { font-family: var(--display); font-weight: 600; margin: 0 0 0.5rem; color: var(--ink); }
+    p { margin: 0 0 0.75rem; color: var(--ink-soft); }
+    .wrap { width: min(100% - 2rem, 1180px); margin-inline: auto; }
+    .topbar {
+      position: sticky; top: 0; z-index: 40;
+      background: rgba(250,247,242,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar-inner {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 0.75rem 0; justify-content: space-between; flex-wrap: wrap;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 0.65rem; color: inherit;
+    }
+    .brand img { width: 40px; height: 40px; border-radius: 10px; object-fit: cover; }
+    .brand strong { display: block; font-size: 0.95rem; letter-spacing: 0.02em; color: var(--maroon); }
+    .brand em { display: block; font-style: normal; font-size: 0.68rem; color: var(--muted); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+    .badge-private {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      background: var(--maroon-soft); color: var(--maroon); padding: 0.25rem 0.55rem; border-radius: 999px;
+    }
+    .top-actions { display: flex; gap: 0.4rem; flex-wrap: wrap; align-items: center; }
+    .btn {
+      appearance: none; border: none; cursor: pointer;
+      font-family: var(--font); font-weight: 700; font-size: 0.82rem;
+      padding: 0.55rem 0.95rem; border-radius: 999px;
+      transition: filter 0.15s, background 0.15s, transform 0.12s;
+    }
+    .btn:active { transform: scale(0.98); }
+    .btn-gold { background: linear-gradient(135deg, var(--gold-bright), var(--gold-deep)); color: #1a1214; }
+    .btn-maroon { background: var(--maroon); color: #fff; }
+    .btn-maroon:hover { background: var(--maroon-deep); }
+    .btn-ghost { background: transparent; border: 1px solid var(--line-strong); color: var(--ink); }
+    .btn-ghost:hover { border-color: var(--maroon); color: var(--maroon); }
+    .btn-whatsapp { background: #128C7E; color: #fff; }
+    .btn-sm { padding: 0.4rem 0.75rem; font-size: 0.78rem; }
+    .btn-icon {
+      width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--line-strong);
+      background: var(--white); cursor: pointer; font-size: 1.1rem; line-height: 1; color: var(--maroon);
+    }
+    .btn-icon:hover { background: var(--maroon-soft); }
+
+    .hero-strip {
+      padding: 1.5rem 0 0.5rem;
+    }
+    .hero-strip h1 { font-size: clamp(1.6rem, 3vw, 2.1rem); }
+    .lede { color: var(--muted); font-size: 0.92rem; max-width: 52ch; }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 1.25rem;
+      padding: 1rem 0 2.5rem;
+      align-items: start;
+    }
+    @media (max-width: 960px) {
+      .layout { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.15rem 1.2rem;
+    }
+    .card h2 {
+      font-size: 1.05rem;
+      margin-bottom: 0.85rem;
+      padding-bottom: 0.55rem;
+      border-bottom: 1px solid var(--line);
+      color: var(--maroon);
+    }
+    .section-label {
+      display: block;
+      font-size: 0.7rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gold-deep); margin: 1rem 0 0.55rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.65rem 0.75rem;
+    }
+    .grid .full { grid-column: 1 / -1; }
+    @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+
+    label.field { display: flex; flex-direction: column; gap: 0.28rem; font-size: 0.78rem; font-weight: 600; color: var(--muted); }
+    label.field span { letter-spacing: 0.02em; }
+    input, select, textarea {
+      font-family: var(--font); font-size: 0.9rem; font-weight: 500; color: var(--ink);
+      border: 1px solid var(--line-strong); border-radius: 8px;
+      padding: 0.55rem 0.65rem; background: #fff;
+      width: 100%;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: 2px solid var(--gold); outline-offset: 1px; border-color: var(--gold);
+    }
+    textarea { resize: vertical; min-height: 64px; }
+
+    .tax-toggle {
+      display: flex; gap: 0.5rem; flex-wrap: wrap;
+    }
+    .tax-toggle label {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.45rem 0.75rem; border: 1px solid var(--line-strong); border-radius: 999px;
+      font-size: 0.82rem; font-weight: 600; cursor: pointer; background: #fff;
+    }
+    .tax-toggle input { width: auto; accent-color: var(--maroon); }
+    .tax-toggle label:has(input:checked) {
+      border-color: var(--maroon); background: var(--maroon-soft); color: var(--maroon);
+    }
+
+    .lines-wrap { overflow-x: auto; margin-top: 0.35rem; }
+    table.lines {
+      width: 100%; border-collapse: collapse; min-width: 640px; font-size: 0.85rem;
+    }
+    table.lines th {
+      text-align: left; font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--muted); padding: 0.4rem 0.35rem; border-bottom: 1px solid var(--line);
+    }
+    table.lines td { padding: 0.35rem; vertical-align: middle; border-bottom: 1px solid var(--line); }
+    table.lines input, table.lines select { padding: 0.4rem 0.45rem; font-size: 0.82rem; }
+    table.lines .amt { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; font-weight: 700; color: var(--maroon); }
+    .sum-panel {
+      margin-top: 0.85rem;
+      display: grid; grid-template-columns: 1fr auto; gap: 0.35rem 1.5rem;
+      font-size: 0.88rem; padding: 0.75rem; background: var(--bg); border-radius: 10px;
+    }
+    .sum-panel .label { color: var(--muted); }
+    .sum-panel .val { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .sum-panel .grand { font-size: 1.05rem; color: var(--maroon); border-top: 1px solid var(--line); padding-top: 0.45rem; margin-top: 0.2rem; }
+    .words { grid-column: 1 / -1; font-size: 0.82rem; color: var(--ink-soft); font-style: italic; margin-top: 0.35rem; }
+
+    .toolbar-row {
+      display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin-top: 1rem;
+    }
+    .list-row {
+      display: grid; grid-template-columns: 1fr auto; gap: 0.5rem; margin-top: 0.5rem;
+    }
+    .presets {
+      display: flex; flex-wrap: wrap; gap: 0.45rem; align-items: center;
+      margin: 0.35rem 0 0.55rem;
+    }
+    .presets .preset-label {
+      font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--maroon); margin-right: 0.15rem;
+    }
+    .btn-preset {
+      appearance: none; border: 1px solid var(--line-strong); background: #fff;
+      font-family: var(--font); font-weight: 700; font-size: 0.78rem;
+      padding: 0.42rem 0.8rem; border-radius: 999px; cursor: pointer; color: var(--ink);
+      transition: border-color 0.15s, background 0.15s, color 0.15s;
+    }
+    .btn-preset:hover { border-color: var(--maroon); color: var(--maroon); background: var(--maroon-soft); }
+    .btn-preset:active { transform: scale(0.98); }
+    .preset-note {
+      font-size: 0.75rem; color: var(--muted); margin: 0 0 0.55rem; line-height: 1.4;
+    }
+
+
+    /* Preview / print sheet */
+    .preview-sticky { position: sticky; top: 72px; }
+    .sheet {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 1.5rem 1.4rem;
+      box-shadow: var(--shadow);
+      font-size: 0.88rem;
+      color: var(--ink);
+    }
+    .sheet-head {
+      display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+      padding-bottom: 1rem; border-bottom: 2px solid var(--gold);
+      margin-bottom: 1rem;
+    }
+    .sheet-brand { display: flex; gap: 0.75rem; align-items: flex-start; }
+    .sheet-brand img { width: 56px; height: 56px; border-radius: 12px; object-fit: cover; }
+    .sheet-brand strong { font-family: var(--display); font-size: 1.25rem; color: var(--maroon); display: block; }
+    .sheet-brand .entity { font-size: 0.78rem; font-weight: 700; color: var(--gold-deep); letter-spacing: 0.04em; }
+    .muted { color: var(--muted); }
+    .tiny { font-size: 0.75rem; line-height: 1.35; }
+    .pending { color: var(--muted); font-weight: 500; }
+    .sheet-meta { text-align: right; font-size: 0.85rem; }
+    .inv-label {
+      font-size: 0.72rem; font-weight: 800; letter-spacing: 0.14em; color: var(--maroon);
+      margin-bottom: 0.35rem;
+    }
+    .sheet-meta .k, .sheet-bill .k, .sheet-foot .k, .words-box .k {
+      font-size: 0.68rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-deep);
+      margin-right: 0.35rem;
+    }
+    .sheet-bill { margin-bottom: 1rem; }
+    .cust-name { font-weight: 700; font-size: 1rem; color: var(--ink); }
+    .sheet-table { width: 100%; border-collapse: collapse; margin: 0.5rem 0 1rem; font-size: 0.82rem; }
+    .sheet-table th {
+      text-align: left; font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--maroon); border-bottom: 1px solid var(--line-strong); padding: 0.4rem 0.3rem;
+    }
+    .sheet-table td { padding: 0.45rem 0.3rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+    .sheet-table .amt { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .sheet-totals { display: flex; gap: 1rem; justify-content: space-between; flex-wrap: wrap; }
+    .words-box { flex: 1 1 200px; font-size: 0.82rem; }
+    .tot-box { min-width: 220px; }
+    .tot-row { display: flex; justify-content: space-between; gap: 1.5rem; padding: 0.2rem 0; font-size: 0.85rem; }
+    .tot-row.grand { font-weight: 800; font-size: 1.05rem; color: var(--maroon); border-top: 1px solid var(--gold); margin-top: 0.35rem; padding-top: 0.45rem; }
+    .sheet-foot { margin-top: 1.1rem; padding-top: 0.75rem; border-top: 1px solid var(--line); font-size: 0.8rem; }
+    .disclaimer { margin-top: 0.75rem; font-size: 0.7rem; color: var(--muted); }
+
+    .foot-note {
+      text-align: center; padding: 1.5rem 0 2rem; font-size: 0.78rem; color: var(--muted);
+    }
+
+    .toast {
+      position: fixed; bottom: 1.25rem; left: 50%; transform: translateX(-50%) translateY(120%);
+      background: var(--maroon); color: #fff; padding: 0.65rem 1.1rem; border-radius: 999px;
+      font-size: 0.85rem; font-weight: 600; box-shadow: var(--shadow); transition: transform 0.25s; z-index: 80;
+      pointer-events: none;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+
+
+
+    /* T&C final page + short footer on invoice */
+    .tnc-agent-banner {
+      border: 2px solid var(--gold);
+      background: linear-gradient(135deg, rgba(122,31,43,0.08), rgba(201,162,77,0.12));
+      color: var(--maroon);
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+      margin: 0 0 1rem;
+      display: flex; flex-direction: column; gap: 0.2rem;
+      text-align: center; letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    .tnc-agent-banner strong { font-size: 0.95rem; font-weight: 800; color: var(--maroon); }
+    .tnc-important {
+      background: #faf7f2; border-left: 4px solid var(--maroon);
+      padding: 0.7rem 0.85rem; font-size: 0.78rem; line-height: 1.45; margin: 0 0 1rem;
+    }
+    .tnc-agent-repeat {
+      margin: 0.65rem 0 0; padding: 0.4rem 0.55rem;
+      border: 1px dashed var(--gold); background: rgba(122,31,43,0.05);
+      text-align: center; letter-spacing: 0.03em; text-transform: uppercase; font-size: 0.72rem;
+    }
+    .tnc-agent-repeat strong { color: var(--maroon); font-weight: 800; }
+    .tnc-clause { margin: 0.35rem 0; font-size: 0.8rem; }
+    .tnc-lettered { list-style: none; padding-left: 0; margin: 0.35rem 0 0.5rem; }
+    .tnc-lettered li { margin: 0.25rem 0; font-size: 0.78rem; color: var(--ink-soft); }
+    .terms-sheet {
+      background: #fff; border: 1px solid var(--line); border-radius: 4px;
+      padding: 1.4rem 1.3rem; box-shadow: var(--shadow); margin-top: 1.25rem;
+      font-size: 0.82rem; color: var(--ink);
+    }
+    .terms-sheet .tnc-title {
+      font-family: var(--display); font-size: 1.15rem; color: var(--maroon); margin: 0 0 0.35rem;
+    }
+    .terms-sheet .tnc-sub { font-size: 0.78rem; color: var(--muted); margin: 0 0 0.85rem; }
+    .terms-sheet h2 { font-size: 0.95rem; color: var(--maroon); margin: 1rem 0 0.4rem; font-family: var(--display); }
+    .terms-sheet section { margin-bottom: 0.65rem; }
+    .terms-sheet p { margin: 0.3rem 0; color: var(--ink-soft); font-size: 0.8rem; }
+    .sheet-tnc-footer {
+      margin-top: 0.85rem; padding-top: 0.75rem; border-top: 1px solid var(--line);
+      font-size: 0.68rem; line-height: 1.4; color: var(--muted);
+    }
+    .sheet-tnc-footer strong { color: var(--maroon); }
+
+    /* Screen-only chrome */
+    .no-print {}
+
+    @media print {
+      @page { size: A4; margin: 12mm; }
+      body { background: #fff !important; }
+      .topbar, .hero-strip, .form-col, .foot-note, .toast, .no-print, .preview-label { display: none !important; }
+      .layout { display: block; padding: 0; }
+      .preview-col { display: block !important; }
+      .preview-sticky { position: static; }
+      .sheet {
+        box-shadow: none !important; border: none !important; border-radius: 0 !important;
+        padding: 0 !important; width: 100%;
+      }
+      .terms-sheet {
+        box-shadow: none !important; border: none !important; border-radius: 0 !important;
+        padding: 0 !important; width: 100%;
+        page-break-before: always; break-before: page;
+        margin-top: 0 !important;
+      }
+      .sheet-tnc-footer { font-size: 0.65rem; }
+      a { color: inherit; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar no-print">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="../index.html">
+        <img src="../assets/img/logo-emblem.png" alt="Sarvadhara Travels logo" width="40" height="40" />
+        <span>
+          <strong>Sarvadhara Travels</strong>
+          <em>Private invoice</em>
+        </span>
+      </a>
+      <span class="badge-private">Staff only · noindex</span>
+      <div class="top-actions">
+        <button type="button" class="btn btn-ghost btn-sm" id="btnNew">New</button>
+        <button type="button" class="btn btn-ghost btn-sm" id="btnSaveDraft">Save draft</button>
+        <button type="button" class="btn btn-maroon btn-sm" id="btnSaveHistory">Save to history</button>
+        <button type="button" class="btn btn-gold btn-sm" id="btnPrint">Print / PDF</button>
+        <button type="button" class="btn btn-gold btn-sm" id="btnPdf" title="Same as Print — choose Save as PDF">Download PDF</button>
+        <button type="button" class="btn btn-whatsapp btn-sm" id="btnWhatsApp">WhatsApp</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap hero-strip no-print">
+    <h1>Invoice generator</h1>
+    <p class="lede">Private tool for Sarvadhara Travels (SarvadharaSai Enterprises). Data stays in this browser — nothing is uploaded. Not linked from the public site.</p>
+  </div>
+
+  <main class="wrap layout">
+    <section class="form-col card no-print" aria-labelledby="formTitle">
+      <h2 id="formTitle">Details</h2>
+
+      <span class="section-label">Your business</span>
+      <div class="grid">
+        <label class="field full"><span>Business name</span>
+          <input type="text" value="Sarvadhara Travels (SarvadharaSai Enterprises)" readonly aria-readonly="true" />
+        </label>
+        <label class="field full"><span>Entity</span>
+          <input type="text" value="SarvadharaSai Enterprises" readonly aria-readonly="true" />
+        </label>
+        <label class="field full"><span>Udyam</span>
+          <input type="text" value="UDYAM-TN-34-0125107" readonly aria-readonly="true" id="bizUdyam" />
+        </label>
+        <label class="field"><span>GSTIN</span>
+          <input type="text" id="bizGstin" placeholder="GSTIN (pending)" autocomplete="off" maxlength="15" />
+        </label>
+        <label class="field"><span>Email</span>
+          <input type="email" id="bizEmail" value="sarvadharatravels@gmail.com" autocomplete="email" />
+        </label>
+        <label class="field"><span>Phone</span>
+          <input type="tel" id="bizPhone" placeholder="Business phone" autocomplete="tel" />
+        </label>
+        <label class="field"><span>Address</span>
+          <input type="text" id="bizAddress" placeholder="Business address" autocomplete="street-address" />
+        </label>
+      </div>
+
+      <span class="section-label">Invoice</span>
+      <div class="grid">
+        <label class="field"><span>Invoice no.</span>
+          <input type="text" id="invNo" autocomplete="off" />
+        </label>
+        <label class="field"><span>Service type</span>
+          <select id="serviceType">
+            <option>Flight ticket</option>
+            <option>Hotel</option>
+            <option>Holiday package</option>
+            <option>Visa/Passport assistance</option>
+            <option>Export/Import</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <label class="field"><span>Date</span>
+          <input type="date" id="invDate" />
+        </label>
+        <label class="field"><span>Due date</span>
+          <input type="date" id="invDue" />
+        </label>
+      </div>
+
+      <span class="section-label">Customer</span>
+      <div class="grid">
+        <label class="field full"><span>Name</span>
+          <input type="text" id="custName" placeholder="Customer full name" autocomplete="name" />
+        </label>
+        <label class="field full"><span>Address</span>
+          <textarea id="custAddr" rows="2" placeholder="Billing address"></textarea>
+        </label>
+        <label class="field"><span>Phone</span>
+          <input type="tel" id="custPhone" placeholder="+91 …" autocomplete="tel" />
+        </label>
+        <label class="field"><span>Customer GSTIN</span>
+          <input type="text" id="custGstin" placeholder="Optional" maxlength="15" />
+        </label>
+      </div>
+
+
+      <span class="section-label">Air ticket presets</span>
+      <div class="presets" role="group" aria-label="Air ticket fee presets">
+        <span class="preset-label">One-tap</span>
+        <button type="button" class="btn-preset" data-air-preset="domestic" id="presetDomestic">Domestic · ₹500</button>
+        <button type="button" class="btn-preset" data-air-preset="gulf" id="presetGulf">Gulf / Short-haul · ₹1,500</button>
+        <button type="button" class="btn-preset" data-air-preset="longhaul" id="presetLonghaul">Long-haul · ₹2,500</button>
+      </div>
+      <p class="preset-note">GST applies on service fee only, once GSTIN is registered.</p>
+
+      <span class="section-label">Line items</span>
+      <div class="lines-wrap">
+        <table class="lines">
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>PNR / Ref</th>
+              <th>Qty</th>
+              <th>Rate ₹</th>
+              <th>GST %</th>
+              <th>Amount</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="lineBody"></tbody>
+        </table>
+      </div>
+      <button type="button" class="btn btn-ghost btn-sm" id="addLine" style="margin-top:0.5rem">+ Add line</button>
+
+      <span class="section-label">Tax &amp; charges</span>
+      <div class="tax-toggle" role="radiogroup" aria-label="GST split">
+        <label><input type="radio" name="taxMode" value="cgst" checked /> CGST + SGST (intra-state)</label>
+        <label><input type="radio" name="taxMode" value="igst" /> IGST (inter-state)</label>
+      </div>
+      <div class="grid" style="margin-top:0.65rem">
+        <label class="field"><span>Service fee ₹</span>
+          <input type="number" id="serviceFee" min="0" step="0.01" value="0" />
+        </label>
+        <label class="field"><span>Discount ₹</span>
+          <input type="number" id="discount" min="0" step="0.01" value="0" />
+        </label>
+      </div>
+
+      <div class="sum-panel" aria-live="polite">
+        <span class="label">Subtotal</span><span class="val" id="sumSubtotal">₹0.00</span>
+        <span class="label">Service fee</span><span class="val" id="sumFee">₹0.00</span>
+        <span class="label">Discount</span><span class="val" id="sumDiscount">₹0.00</span>
+        <span class="label" id="labCgst">CGST</span><span class="val" id="sumCgst">₹0.00</span>
+        <span class="label" id="labSgst">SGST</span><span class="val" id="sumSgst">₹0.00</span>
+        <span class="label" id="labIgst" hidden>IGST</span><span class="val" id="sumIgst" hidden>₹0.00</span>
+        <span class="label grand">Total</span><span class="val grand" id="sumTotal">₹0.00</span>
+        <span class="label">Paid</span><span class="val" id="sumPaid">₹0.00</span>
+        <span class="label">Balance</span><span class="val" id="sumBalance">₹0.00</span>
+        <p class="words" id="sumWords">Zero Rupees Only</p>
+      </div>
+
+      <span class="section-label">Payment &amp; notes</span>
+      <div class="grid">
+        <label class="field"><span>Payment mode</span>
+          <select id="payMode">
+            <option>Cash</option>
+            <option selected>UPI</option>
+            <option>Bank transfer</option>
+            <option>Card</option>
+            <option>Cheque</option>
+            <option>Pending</option>
+          </select>
+        </label>
+        <label class="field"><span>Amount paid ₹</span>
+          <input type="number" id="amtPaid" min="0" step="0.01" value="0" />
+        </label>
+        <label class="field full"><span>Notes</span>
+          <textarea id="invNotes" rows="2" placeholder="UPI ID, bank details, booking reference…"></textarea>
+        </label>
+        <label class="field full"><span>Terms</span>
+          <textarea id="invTerms" rows="2"></textarea>
+        </label>
+      </div>
+
+      <span class="section-label">Drafts &amp; history (this browser)</span>
+      <div class="list-row">
+        <select id="draftList" aria-label="Saved drafts"></select>
+        <button type="button" class="btn btn-ghost btn-sm" id="btnDeleteDraft">Delete draft</button>
+      </div>
+      <div class="list-row">
+        <select id="historyList" aria-label="Invoice history"></select>
+        <span></span>
+      </div>
+    </section>
+
+    <section class="preview-col" aria-labelledby="prevTitle">
+      <p class="preview-label no-print" id="prevTitle" style="font-size:0.72rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-deep);margin:0 0 0.5rem">Live preview · A4 print</p>
+      <div class="preview-sticky">
+        <div class="sheet" id="invoiceSheet" aria-live="polite"></div>
+        <div class="sheet terms-sheet" id="invoiceTermsSheet">
+<div class="tnc-agent-banner" role="note">
+  <strong>SARVADHARA TRAVELS IS ONLY AN AGENT.</strong>
+  <strong>WE WILL ONLY PROVIDE SUPPORT.</strong>
+</div>
+<h2 class="tnc-title">SARVADHARA TRAVELS – TERMS AND CONDITIONS</h2>
+<p class="tnc-sub">(Trade name: Sarvadhara Travels. SarvadharaSai Enterprises, Chennai, Tamil Nadu, India. "Sarvadhara Travels", "we", "us" and "the agency" in these terms mean Sarvadhara Travels (SarvadharaSai Enterprises).)</p>
+<p class="tnc-important"><strong>IMPORTANT – AGENT ONLY, NO LIABILITY: SARVADHARA TRAVELS ACTS ONLY AS A BOOKING AGENT AND PROVIDES SUPPORT AND ASSISTANCE ONLY. BEING ONLY AN AGENT, SARVADHARA TRAVELS SHALL NOT BE HELD LIABLE FOR ANY COST, LOSS, DAMAGE, EXPENSE, CLAIM, REFUND OR COMPENSATION OF ANY KIND ARISING FROM OR CONNECTED WITH THE TRAVEL, THE AIRLINE'S SERVICES, OR ANY ACT OR OMISSION OF THE AIRLINE OR ANY THIRD PARTY.</strong></p>
+<section id="sec-1">
+<h2>1. ACCEPTANCE</h2>
+<p class="tnc-clause">1.1 By making a booking, paying, or accepting a ticket or invoice, the customer agrees to these Terms on behalf of all passengers in the booking.</p>
+<p class="tnc-clause">1.2 The person booking confirms they are authorised by every passenger named.</p>
+</section>
+<section id="sec-2">
+<h2>2. OUR ROLE – BOOKING AGENT ONLY</h2>
+<p class="tnc-clause">2.1 Sarvadhara Travels is a sub-agent that books air tickets through a consolidator platform (TBO) on behalf of the customer. The contract of carriage is solely between the passenger and the airline.</p>
+<p class="tnc-clause">2.2 We do not own, operate or control any airline, aircraft, airport or ground service.</p>
+<p class="tnc-clause">2.3 Our role is limited to making the booking and providing support and assistance, including helping the passenger raise requests and claims with the airline.</p>
+</section>
+<section id="sec-3">
+<h2>3. AIRLINE CONDITIONS AND FARE RULES</h2>
+<p class="tnc-clause">3.1 Every ticket is governed by the operating airline's Conditions of Carriage and the fare rules of the fare purchased, which prevail on all carriage matters.</p>
+<p class="tnc-clause">3.2 Cancellation, no-show, date or name change, upgrade, baggage, seat and refund eligibility are decided only by the airline's fare rules and policies. Non-refundable fares remain non-refundable.</p>
+<p class="tnc-clause">3.3 Airline and consolidator penalties, fare differences and applicable taxes are payable by the customer.</p>
+</section>
+<section id="sec-4">
+<h2>4. REFUNDS</h2>
+<p class="tnc-clause">4.1 A refund is processed only after, and only to the extent that, the airline (through TBO) actually refunds the amount to us.</p>
+<p class="tnc-clause">4.2 Refunds are paid only to the original payer, by the original payment method where possible.</p>
+<p class="tnc-clause">4.3 Refund timelines depend on the airline and the consolidator; we will follow up but do not guarantee them.</p>
+<p class="tnc-clause">4.4 Refund obligations under DGCA Civil Aviation Requirements (Section 3, Series M, Part II and Part IV) rest with the airline; we will assist the passenger in pursuing them.</p>
+<p class="tnc-agent-repeat"><strong>SARVADHARA TRAVELS IS ONLY AN AGENT. WE WILL ONLY PROVIDE SUPPORT.</strong></p>
+</section>
+<section id="sec-5">
+<h2>5. PASSENGER RESPONSIBILITIES</h2>
+<p class="tnc-clause">5.1 The customer must check all ticket details (names exactly as in passport or ID, dates, times, sectors, class) immediately on receipt and tell us of any error at once. Errors not reported before travel are charged as per airline rules.</p>
+<p class="tnc-clause">5.2 Passengers are solely responsible for valid passports, visas, transit visas, ID, health and vaccination requirements, travel insurance, and compliance with immigration and customs laws of every country involved.</p>
+<p class="tnc-clause">5.3 Passengers must reach the airport in time, check flight status and meet airline check-in and boarding deadlines.</p>
+<p class="tnc-clause">5.4 Denied boarding, offloading or deportation due to documents, health, conduct or late reporting is the passenger's sole responsibility.</p>
+<p class="tnc-agent-repeat"><strong>SARVADHARA TRAVELS IS ONLY AN AGENT. WE WILL ONLY PROVIDE SUPPORT.</strong></p>
+</section>
+<section id="sec-6">
+<h2>6. SCHEDULE CHANGES, DELAYS, CANCELLATIONS, DENIED BOARDING AND PASSENGER RIGHTS</h2>
+<p class="tnc-clause">6.1 Airlines may change schedules, cancel or delay flights, or deny boarding. Any compensation, care (meals, accommodation), rerouting or refund is the sole responsibility of the operating or marketing airline under the law that applies to the flight. <strong>SARVADHARA TRAVELS ONLY PROVIDES SUPPORT AND ASSISTANCE AND DOES NOT PAY ANY AIRLINE COMPENSATION.</strong> These laws include:</p>
+<ul class="tnc-lettered">
+<li>(a) India: DGCA Civil Aviation Requirements, Section 3, Series M, Part IV (denied boarding, cancellations, delays) and Part II (refunds), and the Carriage by Air Act, 1972.</li>
+<li>(b) International treaties: the Montreal Convention, 1999, or the Warsaw Convention (as amended) where it applies, for death, injury, delay and baggage.</li>
+<li>(c) European Union: Regulation (EC) No 261/2004.</li>
+<li>(d) United Kingdom: UK Regulation 261 (retained EU law).</li>
+<li>(e) United States: Department of Transportation rules, including 14 CFR Part 250 (oversales and denied boarding compensation), 14 CFR Part 259 (enhanced passenger protections, including the 24-hour hold or cancel rule, which applies to bookings made directly with the airline or as the airline's rules allow) and 14 CFR Part 260 (refunds for cancelled or significantly changed flights).</li>
+<li>(f) Canada: the Air Passenger Protection Regulations (SOR/2019-150) under the Canada Transportation Act, enforced by the Canadian Transportation Agency.</li>
+<li>(g) United Arab Emirates and Gulf: General Civil Aviation Authority (GCAA) passenger rights and consumer protection rules, and similar rules of other Gulf states where they apply.</li>
+<li>(h) Singapore: the airline's conditions of carriage and applicable Singapore law.</li>
+<li>(i) Australia: the Australian Consumer Law (Schedule 2, Competition and Consumer Act 2010) and the airline's customer service obligations.</li>
+<li>(j) Airline conditions of carriage based on IATA recommended practices, and any other law applying to the flight.</li>
+</ul>
+<p class="tnc-clause">6.2 Any right under these laws must be claimed from the airline. On request we will help the passenger prepare and submit the claim; approval, amount and timing are decided by the airline or the relevant authority.</p>
+<p class="tnc-clause">6.3 Baggage: loss, delay, damage or pilferage of baggage, and excess baggage charges, are the airline's sole responsibility under its conditions of carriage and the Montreal or Warsaw Convention. Claims (such as a Property Irregularity Report) must be made with the airline at the airport and within the airline's time limits; we will assist.</p>
+<p class="tnc-agent-repeat"><strong>SARVADHARA TRAVELS IS ONLY AN AGENT. WE WILL ONLY PROVIDE SUPPORT.</strong></p>
+</section>
+<section id="sec-7">
+<h2>7. NO LIABILITY AND LIMITATION OF LIABILITY</h2>
+<p class="tnc-clause">7.1 <strong>Sarvadhara Travels, being only an agent, shall not be liable for any cost, loss, damage, expense, claim, refund or compensation of any kind, whether direct, indirect, incidental or consequential, arising from the travel or from any act, omission, delay, default, negligence, insolvency or cessation of business of any airline, consolidator (including TBO), airport, government authority or other third party.</strong></p>
+<p class="tnc-clause">7.2 Without limiting 7.1, we are not liable for missed connections, separately booked flights, hotels, tours, events, visa costs, business loss, lost earnings, or mental distress.</p>
+<p class="tnc-clause">7.3 If, despite the above, any liability of Sarvadhara Travels is established for its own booking error, its total liability is limited to the amount it actually received as its own fee or commission for that booking, excluding airfare, taxes and amounts passed to the airline or TBO.</p>
+<p class="tnc-clause">7.4 These limits apply to the fullest extent permitted by law.</p>
+<p class="tnc-agent-repeat"><strong>SARVADHARA TRAVELS IS ONLY AN AGENT. WE WILL ONLY PROVIDE SUPPORT.</strong></p>
+</section>
+<section id="sec-8">
+<h2>8. FORCE MAJEURE</h2>
+<p>We are not responsible for any failure or delay caused by events beyond our reasonable control, including natural disasters, weather, epidemics, war, terrorism, civil unrest, strikes, government orders, airspace closures, and system or network failures of airlines, GDS or TBO.</p>
+</section>
+<section id="sec-9">
+<h2>9. PRICES AND PAYMENT</h2>
+<p class="tnc-clause">9.1 Fares are not guaranteed until the ticket is issued; airlines may change fares or availability before issue.</p>
+<p class="tnc-clause">9.2 A booking is confirmed only when the ticket number is issued.</p>
+<p class="tnc-clause">9.3 GST and other taxes apply as per law and are shown on the invoice.</p>
+</section>
+<section id="sec-10">
+<h2>10. PERSONAL DATA AND PRIVACY</h2>
+<p class="tnc-clause">10.1 We collect passenger details (name, contact, ID or passport, travel details) only to make and manage bookings.</p>
+<p class="tnc-clause">10.2 These details are shared with airlines, TBO and authorities as required for ticketing, travel and legal compliance, in line with the Digital Personal Data Protection Act, 2023 and the Information Technology Act, 2000.</p>
+<p class="tnc-clause">10.3 By booking, the customer consents to this use and confirms they have the consent of each passenger.</p>
+</section>
+<section id="sec-11">
+<h2>11. CUSTOMER INDEMNITY</h2>
+<p>The customer agrees to indemnify and hold Sarvadhara Travels harmless against all losses, penalties, claims and costs arising from incorrect information supplied, missing or invalid travel documents, breach of airline rules or law, or misconduct by any passenger in the booking.</p>
+</section>
+<section id="sec-12">
+<h2>12. COMPLAINTS AND CLAIMS ASSISTANCE</h2>
+<p>Complaints about flights must be raised with the airline (including its grievance officer or the AirSewa portal); we will help the passenger do so.</p>
+</section>
+<section id="sec-13">
+<h2>13. GOVERNING LAW AND JURISDICTION</h2>
+<p>These Terms are governed by the laws of India, including the Consumer Protection Act, 2019 and the Consumer Protection (E-Commerce) Rules, 2020. Courts at Chennai, Tamil Nadu have exclusive jurisdiction.</p>
+</section>
+<section id="sec-14">
+<h2>14. CHANGES AND SEVERABILITY</h2>
+<p class="tnc-clause">14.1 We may update these Terms; the version in force on the booking date applies.</p>
+<p class="tnc-clause">14.2 If any clause is held invalid or unenforceable, it applies to the maximum extent permitted and the rest remains in full effect.</p>
+</section>
+<section id="sec-15">
+<h2>15. CONTACT</h2>
+<p>Write to Sarvadhara Travels at sarvadharatravels@gmail.com and we will respond to you shortly.</p>
+</section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <p class="foot-note no-print">© <span id="year"></span> Sarvadhara Travels (SarvadharaSai Enterprises) · Udyam: UDYAM-TN-34-0125107 · Private staff tool · <a href="../index.html">Back to site</a> · <a href="../terms.html">Terms and Conditions</a></p>
+
+  <script src="../assets/invoice-page.js" defer></script>
+</body>
+</html>

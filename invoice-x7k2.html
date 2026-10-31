@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="theme-color" content="#7A1F2B" />
+<meta name="robots" content="noindex, nofollow" />
+  <title>Invoice (private) | SARVADHARA TRAVELS</title>
+  <meta name="description" content="Private invoice tool for SARVADHARA TRAVELS staff." />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js" defer></script>
+</head>
+<body class="page-legal">
+  <div class="motif motif-top" aria-hidden="true">
+    <svg viewBox="0 0 120 40" width="120" height="40"><g fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.55">
+      <circle cx="60" cy="20" r="6"/><circle cx="60" cy="20" r="12"/><path d="M60 2v6M60 32v6M38 20h6M76 20h6"/><path d="M48 8l4 4M72 8l-4 4M48 32l4-4M72 32l-4-4"/><path d="M20 20h12M88 20h12"/><circle cx="16" cy="20" r="2.5"/><circle cx="104" cy="20" r="2.5"/>
+    </g></svg>
+  </div>
+
+  <header class="site-header" id="top">
+    <div class="container nav">
+      <a class="logo" href="index.html">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 44 44" width="40" height="40">
+            <rect x="2" y="2" width="40" height="40" rx="10" fill="var(--teal-deep)"/>
+            <path d="M12 28c5-12 15-12 20 0" fill="none" stroke="var(--marigold)" stroke-width="2.2" stroke-linecap="round"/>
+            <circle cx="22" cy="16" r="3.5" fill="var(--sand)"/>
+            <path d="M10 32h24" stroke="var(--temple)" stroke-width="1.4" stroke-linecap="round" opacity=".85"/>
+          </svg>
+        </span>
+        <span class="logo-text">
+          <strong>SARVADHARA</strong>
+          <em>TRAVELS</em>
+        </span>
+      </a>
+      <nav class="nav-links" id="navLinks" style="margin-left:auto">
+        <a href="index.html">Back to site</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="invoice-main">
+    <div class="container">
+      <div class="legal-hero" style="margin-bottom:1.75rem">
+        <p class="eyebrow dark"><span class="dot" aria-hidden="true"></span> Private staff tool</p>
+        <h1>Invoice maker</h1>
+        <p class="legal-lede">Create invoices for customers. This page is private (noindex) and is not linked from the public site.</p>
+      </div>
+
+      <div class="invoice-layout">
+        <section class="invoice-form-card" aria-labelledby="invFormTitle">
+          <h2 id="invFormTitle">Details</h2>
+          <div class="inv-grid">
+            <label><span>Invoice no.</span><input type="text" id="invNo" autocomplete="off" /></label>
+            <label><span>Date</span><input type="date" id="invDate" /></label>
+            <label class="full"><span>Bill to (customer name)</span><input type="text" id="custName" placeholder="Customer full name" /></label>
+            <label><span>Customer email</span><input type="email" id="custEmail" placeholder="customer@email.com" /></label>
+            <label><span>Customer phone</span><input type="tel" id="custPhone" placeholder="+91 …" /></label>
+            <label class="full"><span>Customer address (optional)</span><textarea id="custAddr" rows="2" placeholder="Address"></textarea></label>
+            <label class="full"><span>Notes (optional)</span><textarea id="invNotes" rows="2" placeholder="UPI / bank details / reference"></textarea></label>
+          </div>
+
+          <span class="inv-block-label">Line items</span>
+          <div class="inv-lines" id="invLines"></div>
+          <button type="button" class="btn btn-sm btn-ghost-dark" id="addLine">+ Add line</button>
+
+          <span class="inv-block-label">Charges &amp; tax</span>
+          <div class="inv-grid">
+            <label><span>Service charge ₹</span><input type="number" id="invSvcCharge" min="0" step="0.01" value="0" /></label>
+            <label><span>Discount ₹</span><input type="number" id="invDiscount" min="0" step="0.01" value="0" /></label>
+            <label><span>Apply GST?</span>
+              <select id="invGstOn">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+              </select>
+            </label>
+            <label><span>GST %</span><input type="number" id="invTax" min="0" step="0.01" value="18" /></label>
+            <label class="full"><span>GSTIN (optional)</span><input type="text" id="invGstin" placeholder="e.g. 33AAAAA0000A1Z5" /></label>
+          </div>
+
+          <span class="inv-block-label">Payment</span>
+          <div class="inv-grid">
+            <label><span>Payment mode</span>
+              <select id="payMode">
+                <option value="Cash">Cash</option>
+                <option value="UPI">UPI</option>
+                <option value="Bank transfer">Bank transfer</option>
+                <option value="Card">Card</option>
+                <option value="Cheque">Cheque</option>
+                <option value="Pending">Pending</option>
+              </select>
+            </label>
+            <label><span>Amount paid ₹</span><input type="number" id="amtPaid" min="0" step="0.01" value="0" /></label>
+          </div>
+
+          <div class="inv-actions">
+            <button type="button" class="btn btn-marigold" id="btnDownloadPdf">Download PDF</button>
+            <button type="button" class="btn btn-teal" id="btnPrint">Print</button>
+            <button type="button" class="btn btn-whatsapp" id="btnWhatsApp">WhatsApp share</button>
+            <button type="button" class="btn btn-ghost-dark" id="btnEmailInvoice">Email invoice</button>
+            <button type="button" class="btn btn-ghost-dark" id="btnGmailCompose">Open in Gmail</button>
+            <button type="button" class="btn btn-ghost-dark" id="btnNewInvoice">New invoice</button>
+          </div>
+          <p class="inv-email-note">Attach the downloaded PDF before sending. Email opens with the customer as To and <strong>sarvadharatravels@gmail.com</strong> as Cc.</p>
+        </section>
+
+        <section class="invoice-preview-card" aria-labelledby="invPrevTitle">
+          <h2 id="invPrevTitle">Preview</h2>
+          <div class="inv-preview" id="invPreview" aria-live="polite"></div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom" style="border:none;padding-top:0">
+      <p>© <span id="year"></span> SARVADHARA TRAVELS · Private invoice tool</p>
+      <p class="fine"><a href="terms.html">Conditions of Service</a></p>
+    </div>
+  </footer>
+
+  <script src="assets/app.js" defer></script>
+  <script src="assets/invoice.js" defer></script>
+</body>
+</html>
