@@ -1342,6 +1342,24 @@ body.ap-sheet-open { overflow: hidden; }
 }
 
 
+
+/* Terms – scope notice (Travels + Enterprises) */
+.tnc-scope-notice {
+  border: 2px solid var(--maroon, #7A1F2B);
+  background: linear-gradient(135deg, rgba(122,31,43,0.12), rgba(201,162,77,0.18));
+  color: var(--maroon, #7A1F2B);
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  margin: 0 0 1.5rem;
+  font-size: 0.98rem;
+  line-height: 1.55;
+  box-shadow: 0 2px 10px rgba(122,31,43,0.08);
+}
+.tnc-scope-notice strong {
+  font-weight: 800;
+  color: var(--maroon, #7A1F2B);
+}
+
 /* Terms & Conditions – agent notice */
 .tnc-agent-banner {
   border: 2px solid var(--gold, #c9a24d);
