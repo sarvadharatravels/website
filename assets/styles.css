@@ -930,6 +930,15 @@ body.drawer-open { overflow: hidden; }
 .float-wa, .float-wa-icon, .float-wa-label, #floatWhatsApp, #floatWhatsAppWrap {
   display: none !important;
 }
+/* Header WhatsApp chip: not a floater, but was painting over titles on legacy .nav-links pages.
+   WhatsApp remains in contact section, footer, and Sarathi panel only. */
+#navWhatsApp {
+  display: none !important;
+}
+/* Legacy header .nav-links (terms/export) use display:contents and spill over content on narrow screens */
+@media (max-width: 980px) {
+  header .nav-links { display: none !important; }
+}
 
 /* Footer */
 .site-footer {
