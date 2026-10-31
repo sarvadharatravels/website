@@ -41,7 +41,7 @@ function buildEnquirySummary(fields) {
     "passengers", "cabin_class", "tour_type", "tour_destination", "tour_start", "tour_end",
     "tour_pax", "tour_notes", "doc_service", "visa_country", "doc_applicants", "doc_city",
     "trade_product", "trade_quantity", "trade_destination", "trade_incoterm",
-    "product", "quantity", "destination_country", "incoterm", "notes", "question",
+    "sender_name", "pickup_address", "pickup_pin", "receiver_name", "receiver_phone", "receiver_address", "receiver_pin", "receiver_country", "parcel_type", "shipment_scope", "weight_kg", "length_cm", "width_cm", "height_cm", "declared_value", "contents", "cod", "selected_courier", "selected_price", "selected_etd", "agree_terms", "product", "quantity", "destination_country", "incoterm", "notes", "question",
     "name", "email", "phone", "source",
   ];
   const label = (k) => k.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
@@ -287,6 +287,13 @@ function wireHeaderScroll() {
   const header = document.querySelector(".site-header");
   const root = document.querySelector(".snap-root") || window;
   if (!header) return;
+  // Legal / light pages stay solid (cream bar + maroon logos) — never transparent white type
+  const alwaysSolid = header.hasAttribute("data-solid") ||
+    document.body.classList.contains("page-legal");
+  if (alwaysSolid) {
+    header.classList.add("is-solid");
+    return;
+  }
   const onScroll = () => {
     const y = root === window ? window.scrollY : root.scrollTop;
     header.classList.toggle("is-solid", y > 40);

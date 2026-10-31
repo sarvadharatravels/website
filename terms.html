@@ -32,51 +32,90 @@
     </g></svg>
   </div>
 
-  <header class="site-header is-solid" id="top">
+    <header class="site-header is-solid" id="top">
     <div class="container nav">
+      <div class="brand-lockup">
       <a class="logo" href="index.html">
-        <span class="logo-mark" aria-hidden="true"><img src="assets/img/logo-emblem.png" width="44" height="44" alt="" /></span>
+        <span class="logo-mark" aria-hidden="true"><img src="assets/img/logo-emblem.png" width="40" height="40" alt="" /></span>
         <span class="logo-text">
           <strong>SARVADHARA</strong>
           <em>TRAVELS</em>
         </span>
       </a>
-      <div class="lang-switch" aria-label="Language / மொழி">
-        <span class="lang-label">Language / மொழி</span>
-        <label class="lang-native-wrap">
-          <span class="visually-hidden">Choose language</span>
-          <select id="langNative" class="lang-native notranslate" translate="no" aria-label="Language / மொழி">
-            <option value="en">English</option>
-            <option value="ta">தமிழ் (Tamil)</option>
-            <option value="hi">हिन्दी (Hindi)</option>
-            <option value="te">తెలుగు (Telugu)</option>
-            <option value="ml">മലയാളം (Malayalam)</option>
-            <option value="kn">ಕನ್ನಡ (Kannada)</option>
-            <option value="bn">বাংলা (Bengali)</option>
-            <option value="mr">मराठी (Marathi)</option>
-            <option value="gu">ગુજરાતી (Gujarati)</option>
-            <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
-            <option value="ur">اردو (Urdu)</option>
-          </select>
-        </label>
-        <div id="google_translate_element" class="gt-slot" aria-hidden="true"></div>
-      </div>
-      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-      <nav class="nav-links" id="navLinks">
-        <a href="index.html#booking">Enquire</a>
-        <a href="index.html#services">Services</a>
-        <a href="index.html#areas">Areas</a>
-        <a href="index.html#faq">FAQ</a>
-        <a href="travel-info.html">Travel information</a>
-        <a href="export-import.html">Export &amp; Import</a>
+      <span class="brand-lockup-divider" aria-hidden="true"></span>
+      <a class="logo logo-enterprises" href="courier.html" title="SarvadharaSai Enterprises">
+        <span class="logo-mark" aria-hidden="true"><img src="assets/img/sarvadharasai-enterprises-logo.jpg" width="40" height="40" alt="" /></span>
+        <span class="logo-text">
+          <strong>SARVADHARASAI</strong>
+          <em>ENTERPRISES</em>
+        </span>
+      </a>
+    </div>
+      <nav class="nav-center" aria-label="Primary">
+        <a href="index.html#booking" data-enquiry="Flights">Flights</a>
+        <a href="index.html#booking" data-enquiry="Holidays">Holidays</a>
+        <a href="export-import.html">Trade</a>
+        <a href="courier.html">Courier</a>
+        <a href="travel-info.html">Travel info</a>
         <a href="index.html#contact">Contact</a>
-        <a href="terms.html" aria-current="page">Terms</a>
-<a class="btn btn-sm btn-whatsapp" id="navWhatsApp" href="#" target="_blank" rel="noopener" data-contact="whatsapp" hidden>WhatsApp</a>
       </nav>
+      <div class="nav-right">
+        <div class="lang-switch" aria-label="Language / மொழி">
+          <label class="lang-native-wrap">
+            <span class="visually-hidden">Choose language</span>
+            <select id="langNative" class="lang-native notranslate" translate="no" aria-label="Language">
+              <option value="en">EN</option>
+              <option value="ta">தமிழ்</option>
+              <option value="hi">हिन्दी</option>
+              <option value="te">తెలుగు</option>
+              <option value="ml">മലയാളം</option>
+              <option value="kn">ಕನ್ನಡ</option>
+              <option value="bn">বাংলা</option>
+              <option value="mr">मराठी</option>
+              <option value="gu">ગુજરાતી</option>
+              <option value="pa">ਪੰਜਾਬੀ</option>
+              <option value="ur">اردو</option>
+            </select>
+          </label>
+          <div id="google_translate_element" class="gt-slot" aria-hidden="true"></div>
+        </div>
+        <button class="nav-menu-btn" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer">
+          <span class="nav-menu-label">Menu</span>
+          <span class="nav-menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+        </button>
+      </div>
     </div>
   </header>
+
+  <div class="nav-drawer-backdrop" id="navBackdrop" hidden></div>
+  <aside class="nav-drawer" id="navDrawer" hidden aria-label="Site menu">
+    <div class="nav-drawer-head">
+      <div class="nav-drawer-brand-row">
+        <span class="logo-mark" aria-hidden="true"><img src="assets/img/logo-emblem.png" width="34" height="34" alt="" /></span>
+        <span class="logo-mark" aria-hidden="true"><img src="assets/img/sarvadharasai-enterprises-logo.jpg" width="34" height="34" alt="" /></span>
+        <span class="nav-drawer-brand-stack">
+          <strong>SARVADHARA</strong>
+          <em>TRAVELS · ENTERPRISES</em>
+        </span>
+      </div>
+      <button type="button" class="nav-drawer-close" id="navDrawerClose" aria-label="Close menu">✕</button>
+    </div>
+    <nav class="nav-drawer-links" id="navLinks">
+      <a href="index.html#booking">Enquire</a>
+      <a href="index.html#sec-flights">Flights &amp; tickets</a>
+      <a href="index.html#sec-holidays">Holidays</a>
+      <a href="index.html#sec-visa">Passport &amp; visa</a>
+      <a href="travel-info.html">Travel information</a>
+      <a href="export-import.html">Export &amp; Import</a>
+      <a href="courier.html">Courier &amp; Cargo</a>
+      <a href="index.html#services">All services</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="terms.html" aria-current="page">Terms and Conditions</a>
+      <a class="btn btn-sm btn-whatsapp" id="navWhatsApp" href="#" target="_blank" rel="noopener" data-contact="whatsapp" hidden>WhatsApp</a>
+    </nav>
+  </aside>
+
 
   <main class="legal-main">
     <div class="container legal-wrap">
@@ -321,6 +360,7 @@
         <a href="index.html#services">Services</a>
         <a href="travel-info.html">Travel information</a>
         <a href="export-import.html">Export &amp; Import</a>
+        <a href="courier.html">Courier &amp; Cargo</a>
         <a href="index.html#contact">Contact</a>
         <a href="terms.html">Terms and Conditions</a>
 </div>
