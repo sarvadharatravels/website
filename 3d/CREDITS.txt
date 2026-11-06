@@ -1,0 +1,40 @@
+Sarvadhara Travels — 3D homepage preview: third-party assets and licences
+
+1. Airliner: "Twin-Jet Airliner" (narrowbody-airliner v1, LOD0, 82k triangles, 1.4 MB GLB, already meshopt-compressed)
+   Source: https://tevy.dev/models/narrowbody-airliner  (file: https://tevy.dev/models/narrowbody-airliner/v1/lod0.glb)
+   Licence: CC0 1.0 (public domain dedication); no attribution required, credited anyway.
+   Changes: repainted at runtime (white fuselage, maroon cheatline/tail, gold stripe), with "Sarvadhara Travels" name and the
+   Sarvadhara emblem applied as decals; landing gear hidden after take-off.
+
+1b. Further CC0 models from tevy.dev (all CC0 1.0, meshopt/KTX2-compressed GLB; pages list the licence):
+   - Mid-Size SUV (LOD0)            https://tevy.dev/models/suv            file: /models/suv/v1/lod0.glb
+   - Container Ship (LOD1)          https://tevy.dev/models/container-ship file: /models/container-ship/v1/lod1.glb
+   - Harbour Container Crane (LOD1) https://tevy.dev/models/harbour-crane  file: /models/harbour-crane/v1/lod1.glb
+   - Shipping Container Set (LOD1)  https://tevy.dev/models/shipping-container file: /models/shipping-container/v1/lod1.glb
+   Changes: recoloured to brand maroon/gold at runtime; brand decals (car doors and roof sign, house plaque, hull name, container panels) added.
+
+2. Hands: WebXR Input Profiles "generic-hand" (left.glb / right.glb, rigged)
+   Source: https://github.com/immersive-web/webxr-input-profiles  (npm @webxr-input-profiles/assets@1.0, profiles/generic-hand)
+   Licence: MIT, Copyright (c) 2019 Amazon. Full text: https://cdn.jsdelivr.net/npm/@webxr-input-profiles/assets@1.0/LICENSE.md
+   Changes: polished-gold PBR material, posed and positioned to cup the globe.
+
+3. Libraries (loaded from jsDelivr CDN): three.js r160 (MIT) incl. GLTFLoader, KTX2Loader + Basis transcoder, meshopt decoder,
+   RoomEnvironment, DecalGeometry, SkeletonUtils; GSAP 3.12.5 (GreenSock standard licence, free).
+4. World land mask: three.js example texture earth_specular_2048.jpg (three.js repository, MIT).
+5. Opening sound: opening-sound.mp3, taken from the owner's own business-card video (owner's brand audio).
+   All other sounds are synthesised live with the Web Audio API (no audio files).
+6. Fonts: Playfair Display, Manrope, Noto Sans Tamil via Google Fonts (SIL Open Font License).
+7. Logos/emblem: Sarvadhara Travels / SarvadharaSai Enterprises own brand assets.
+
+Cinematic environment pass — 7 Nov 2026:
+- Modern neutral apartment replaces village-house: Apartment Block v2 LOD1, tevy.dev, CC0 1.0.
+  https://tevy.dev/models/apartment-block ; download https://tevy.dev/models/apartment-block/v2/lod1.glb
+- Water, EffectComposer, RenderPass, BokehPass, UnrealBloomPass, OutputPass: three.js r160, MIT.
+- All asphalt, cardboard fibres, tape ridge bump, ocean wave normals, skyline window texture, foam/wake and glow textures
+  generated locally in cinema.js; original procedural artwork, no third-party texture rights.
+- No HDRI downloads: RoomEnvironment generated PMREM is reused, with scene-specific lights, sun/colour and exposure effects.
+- Desktop postprocessing: subtle bloom and small-aperture depth of field. Mobile skips those passes and Water reflections.
+
+Removed unused village-house.glb; total compressed GLBs: 6.18 MB (decimal).
+
+Full MIT licence text for WebXR hand models is included in models/HANDS-LICENSE.txt.

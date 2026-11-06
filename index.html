@@ -26,7 +26,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Sarvadhara Travels | Travel Agency Chennai &amp; Tamil Nadu" />
   <meta name="twitter:description" content="Flights, IRCTC, passport &amp; visa assistance, tours, cargo, pet transport, export &amp; import. Chennai &amp; across India." />
-  <link rel="stylesheet" href="assets/styles.css" />
+  
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -82,902 +82,177 @@
     ]
   }
   </script>
-</head>
+<style>
+:root{--bg:#f7f3ec;--cream:#faf7f2;--maroon:#7A1F2B;--maroon-deep:#5c1520;--gold:#c9a24d;--gold-bright:#e0c06a;--gold-deep:#a6853a;--gold-soft:#f5edd8;--ink:#1a1214;--ink-soft:#3d3336;--muted:#6a6064;--line:#e8dfd0;
+--font:"Manrope","Noto Sans Tamil",system-ui,sans-serif;--display:"Playfair Display",Georgia,serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.sky{position:fixed;inset:0;z-index:-2;background:radial-gradient(80% 60% at 60% 35%,#fffdf8 0%,var(--cream) 45%,#efe6d6 100%)}
+#stage{position:fixed;inset:0;z-index:0;touch-action:pan-y}
+#stage canvas{display:block}
+.vignette{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(120% 90% at 50% 50%,transparent 60%,rgba(166,133,58,.10) 100%)}
+nav{position:absolute;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:18px 4vw}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand img{height:44px;border-radius:8px}
+.brand span{font-family:var(--display);font-weight:600;font-size:1.15rem;color:var(--maroon);line-height:1.1}
+.brand small{display:block;font-family:var(--font);font-size:.66rem;letter-spacing:.18em;color:var(--gold-deep);text-transform:uppercase}
+nav ul{display:flex;gap:26px;list-style:none;font-size:.86rem;font-weight:600}nav ul a{text-decoration:none;color:var(--ink-soft)}nav ul a:hover{color:var(--maroon)}
+main{position:relative;z-index:2;pointer-events:none}
+main a,main button,.card{pointer-events:auto}
+.scene{height:220vh;position:relative}
+.pin{position:sticky;top:0;height:100vh;display:flex;align-items:center;padding:100px 6vw 60px}
+.scene.r .pin{justify-content:flex-end}
+.hero .pin{align-items:flex-start;padding-top:18vh}
+.card{max-width:500px;background:rgba(255,255,255,.62);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);border:1px solid rgba(232,223,208,.9);border-radius:20px;padding:38px;box-shadow:0 30px 80px rgba(122,31,43,.10)}
+.hero .card{background:none;border:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;padding:0;max-width:640px}
+.eyebrow{font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-deep);font-weight:800;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.eyebrow b{font-family:var(--display);font-size:1rem;color:var(--maroon);letter-spacing:0}
+h1,h2{font-family:var(--display);font-weight:600;line-height:1;letter-spacing:-.015em}
+h1{font-size:clamp(3rem,7.4vw,6.6rem)}h2{font-size:clamp(2.3rem,4.8vw,4.2rem);margin-bottom:6px}
+h1 em,h2 em{font-style:italic;color:var(--maroon)}
+.w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.08em}.w>span{display:inline-block}
+.sweep{background:linear-gradient(100deg,var(--maroon) 0%,var(--maroon) 40%,var(--gold-bright) 50%,var(--maroon) 60%,var(--maroon) 100%);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent!important;animation:sweep 3.2s ease 1.6s both}
+@keyframes sweep{from{background-position:100% 0}to{background-position:0 0}}
+p.lead{font-size:clamp(1rem,1.25vw,1.12rem);line-height:1.65;color:var(--ink-soft);margin:18px 0 26px;max-width:460px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-width:170px;padding:15px 24px;border-radius:6px;font-weight:700;font-size:.9rem;text-decoration:none;transition:.25s;border:0;cursor:pointer;font-family:var(--font)}
+.btn.p{background:var(--maroon);color:#fff}.btn.p:hover{background:var(--maroon-deep)}
+.btn.g{background:rgba(255,255,255,.8);border:1px solid var(--line);color:var(--ink)}.btn.g:hover{border-color:var(--gold)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0}.chips span{font-size:.76rem;font-weight:700;padding:7px 13px;border-radius:40px;background:rgba(255,255,255,.85);border:1px solid var(--line);color:var(--ink-soft)}
+.hint{margin-top:16px;font-size:.76rem;color:var(--gold-deep);font-weight:700;letter-spacing:.06em}
+.cue{position:absolute;bottom:26px;left:6vw;font-size:.7rem;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);font-weight:800}.cue i{display:inline-block;width:40px;height:1px;background:var(--gold);vertical-align:middle;margin-right:10px}
+.price{display:none;margin-top:14px;padding:14px 16px;border-radius:12px;background:var(--gold-soft);border:1px solid var(--gold);font-size:.9rem;color:var(--ink)}.price.on{display:block}
+.price a{color:var(--maroon);font-weight:800}
+.snd{white-space:nowrap;display:inline-flex;align-items:center;gap:3px;background:none;border:1px solid var(--line);border-radius:30px;padding:6px 12px;font:700 .74rem var(--font);color:var(--ink-soft);cursor:pointer;letter-spacing:.06em}.snd i{width:2px;height:10px;background:var(--gold);border-radius:2px;animation:eq 1s ease-in-out infinite}.snd i:nth-child(2){animation-delay:.2s}.snd i:nth-child(3){animation-delay:.4s}.snd i:nth-child(4){animation-delay:.1s}.snd span{margin-left:6px}.snd.off i{animation:none;height:3px}@keyframes eq{50%{transform:scaleY(.3)}}
+.pass{position:relative;margin-top:26px;display:grid;grid-template-columns:1fr auto;max-width:440px;background:linear-gradient(135deg,#fffdf7,#f5edd8);border:1px solid var(--gold);border-radius:14px;box-shadow:0 18px 50px rgba(166,133,58,.25);overflow:hidden;pointer-events:auto;font-size:.72rem;transform-origin:top}
+.pass .m{padding:14px 18px}.pass .s{padding:14px 16px;border-left:2px dashed rgba(166,133,58,.6);background:rgba(122,31,43,.04);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px;min-width:96px}
+.pass .t{display:flex;justify-content:space-between;color:var(--gold-deep);font-weight:800;letter-spacing:.2em;font-size:.62rem}
+.pass .r{display:flex;align-items:center;gap:10px;margin:8px 0 6px;font-family:var(--display);font-size:1.6rem;color:var(--maroon)}.pass .r small{display:block;font-family:var(--font);font-size:.62rem;color:var(--muted);letter-spacing:.08em}
+.pass .r i{flex:1;height:1px;background:linear-gradient(90deg,var(--gold),transparent);position:relative}.pass .r i:after{content:"✈";position:absolute;right:0;top:-.62em;font-size:.8rem;color:var(--gold-deep);font-style:normal}
+.pass input{border:0;border-bottom:1px solid var(--line);background:transparent;font:700 .82rem var(--font);color:var(--ink);width:100%;padding:3px 0;outline:none}.pass input:focus{border-color:var(--gold)}
+.pass label{display:block;color:var(--muted);font-weight:700;letter-spacing:.08em;font-size:.6rem;margin-top:4px}
+.pass .g{display:grid;grid-template-columns:1.4fr 1fr;gap:10px}
+.pass .s b{font-family:var(--display);font-size:1.5rem;color:var(--maroon)}.pass .bar{width:70px;height:26px;background:repeating-linear-gradient(90deg,#1a1214 0 2px,transparent 2px 4px,#1a1214 4px 5px,transparent 5px 8px)}
+.js .pass{animation:print 1.6s cubic-bezier(.2,.8,.2,1) 6.6s both}@keyframes print{from{clip-path:inset(0 0 100% 0);transform:translateY(-14px)}to{clip-path:inset(0 0 0 0);transform:none}}
+.localtime{margin-top:14px;display:flex;gap:10px;align-items:center;font-size:.8rem;color:var(--ink-soft);font-weight:600}.localtime b{font-family:var(--display);font-size:1.25rem;color:var(--maroon)}
+#dustfx{position:fixed;inset:0;z-index:45;pointer-events:none}
+@media (max-width:820px){.pass{margin-top:16px;font-size:.66rem}.pass .r{font-size:1.25rem}.pass .s{min-width:76px;padding:10px}.hero p.lead{display:none}}
+.final{height:260vh}.fin{text-align:center;max-width:760px;margin:0 auto;color:#fff7e6;pointer-events:auto}
+.fin>*{opacity:0;transform:translateY(18px);transition:opacity 1s ease,transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.fin-logo{width:min(220px,46vw);border-radius:50%;background:#fffaf0;padding:8px;box-shadow:0 0 0 2px #c9a24d,0 0 80px 20px rgba(224,192,106,.45);transform:scale(.6)!important}
+.fin-name{font-family:var(--display);font-size:clamp(3rem,8vw,6.4rem);font-weight:600;letter-spacing:.01em;margin:18px 0 6px;background:linear-gradient(100deg,#f0d78a,#c9a24d 50%,#fff3cf 60%,#c9a24d);-webkit-background-clip:text;background-clip:text;color:transparent}
+.fin-mean{display:flex;justify-content:center;gap:34px;font-size:1.05rem;color:#e8dccb;letter-spacing:.06em}.fin-mean b{font-family:var(--display);font-style:italic;color:var(--gold-bright);font-weight:600;font-size:1.3rem}
+.fin-tag{font-family:var(--display);font-size:clamp(1.5rem,3vw,2.3rem);margin:16px 0 4px;color:#fff7e6}.fin-tag em{color:var(--gold-bright)}
+.fin-note{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:#bfae97}
+.fin-brands{margin-top:22px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;font-size:.78rem;color:var(--gold-bright)}
+.fin-personal{margin-top:8px;font-size:1rem;color:#fff7e6;min-height:1.2em}.fin-cta{justify-content:center;margin-top:24px}
+body[data-fin="1"] .fin-logo,body[data-fin="2"] .fin-logo,body[data-fin="3"] .fin-logo,body[data-fin="4"] .fin-logo{opacity:1;transform:scale(1)!important}
+body[data-fin="2"] .fin-name,body[data-fin="3"] .fin-name,body[data-fin="4"] .fin-name,body[data-fin="2"] .fin-mean,body[data-fin="3"] .fin-mean,body[data-fin="4"] .fin-mean{opacity:1;transform:none}
+body[data-fin="3"] .fin-tag,body[data-fin="4"] .fin-tag,body[data-fin="3"] .fin-note,body[data-fin="4"] .fin-note{opacity:1;transform:none}
+body[data-fin="4"] .fin-brands,body[data-fin="4"] .fin-personal,body[data-fin="4"] .fin-cta{opacity:1;transform:none}
+body:not([data-fin]) .fin>*{opacity:1;transform:none}
+@media (max-width:820px){.final .pin{align-items:center}.fin-mean{gap:16px;font-size:.92rem}}
+.progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--maroon),var(--gold));z-index:30;width:0}
+.final .pin{justify-content:center;text-align:center}
+
+footer{position:relative;z-index:2;background:var(--ink);color:#d9cfc4;padding:40px 6vw;display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center;font-size:.86rem}
+footer .logos{display:flex;gap:12px;align-items:center}footer img{height:40px;border-radius:6px;background:#fff;padding:3px}footer a{color:var(--gold-bright);text-decoration:none}
+.sarathi{position:fixed;right:20px;bottom:22px;z-index:50;display:flex;align-items:center;gap:10px;background:var(--maroon);color:#fff;border:0;border-radius:40px;padding:12px 18px 12px 12px;font:700 .86rem var(--font);box-shadow:0 10px 30px rgba(122,31,43,.35);cursor:pointer}
+.sarathi .dot{width:30px;height:30px;border-radius:50%;background:var(--gold);display:grid;place-items:center;color:var(--maroon-deep);font-weight:800}
+@media (max-width:820px){.brand small{display:none}.brand span{font-size:1rem}nav ul li{display:none}nav ul li:last-child{display:block}nav ul{display:flex}.brand img{height:36px}.pin{align-items:flex-end;padding:80px 16px 24px}.scene.r .pin{justify-content:flex-start}
+.card{padding:22px;border-radius:16px}.hero .pin{padding-top:13vh;align-items:flex-start}.hero .card{padding:0}p.lead{margin:12px 0 16px;font-size:.95rem}.btn{min-width:140px;padding:13px 18px}
+.chips{display:none}.sarathi .t{display:none}.sarathi{padding:10px}}
+@media (prefers-reduced-motion:reduce){.sweep{animation:none}.sweep{color:var(--maroon)!important;background:none}}
+
+/* Motion language: clockwork / flight instruments, never obtrusive. */
+.card{--tiltx:0deg;--tilty:0deg;animation:cardBreathe 7s ease-in-out infinite;will-change:transform;transform:perspective(1100px) rotateX(var(--tiltx)) rotateY(var(--tilty))}
+.scene:nth-child(2n) .card{animation-delay:-3s}
+@keyframes cardBreathe{50%{translate:0 -6px;box-shadow:0 36px 95px rgba(122,31,43,.15)}}
+.hero .card{animation:heroBreathe 8s ease-in-out infinite}@keyframes heroBreathe{50%{translate:0 -3px}}
+.pass{perspective:900px;isolation:isolate}.pass:after{content:"";position:absolute;inset:-80% -60%;pointer-events:none;background:linear-gradient(110deg,transparent 40%,rgba(224,192,106,.18) 46%,rgba(255,255,255,.8) 50%,rgba(201,162,77,.23) 54%,transparent 60%);transform:translateX(-65%) rotate(-8deg);animation:holo 7s ease-in-out infinite;mix-blend-mode:screen;z-index:4}
+@keyframes holo{35%,100%{transform:translateX(65%) rotate(-8deg)}0%{transform:translateX(-65%) rotate(-8deg)}}
+.pass .s{transform-origin:top left;animation:tear 9s ease-in-out infinite;position:relative;z-index:1}
+@keyframes tear{0%,70%,100%{transform:rotateY(var(--ticketPeel,0deg))}78%{transform:rotateY(calc(-14deg + var(--ticketPeel,0deg))) rotateZ(1deg)}88%{transform:rotateY(6deg)}}
+.pass .r i:after{animation:miniFly 5s ease-in-out infinite}@keyframes miniFly{0%{right:90%;opacity:0}15%,85%{opacity:1}100%{right:0;opacity:0}}
+.flightno{font:800 .65rem var(--font);color:var(--maroon);letter-spacing:.12em;margin-bottom:6px}
+.flipchar{display:inline-block;min-width:.6em;perspective:180px;position:relative;text-align:center;font-variant-numeric:tabular-nums}.flipchar.f{animation:flap .48s cubic-bezier(.2,.7,.3,1)}
+@keyframes flap{0%{transform:rotateX(-86deg);filter:brightness(.55)}50%{filter:brightness(1.4)}100%{transform:rotateX(0);filter:brightness(1)}}
+.flipclock{display:inline-flex;gap:1px;font-family:var(--font)!important;font-size:.92rem!important;font-weight:800;font-variant-numeric:tabular-nums}.flipclock .flipchar{background:rgba(122,31,43,.055);border-radius:3px;padding:3px 1px}.flipclock .flipchar:after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(201,162,77,.25)}
+.localtime{flex-wrap:wrap;font-size:.72rem}.eyebrow:before{content:"";width:5px;height:5px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 5px rgba(201,162,77,.12);animation:beacon 2.6s ease-in-out infinite}
+@keyframes beacon{50%{box-shadow:0 0 0 9px rgba(201,162,77,0);opacity:.65}}
+.btn{position:relative;overflow:hidden}.btn:after{content:"";position:absolute;width:35%;inset:-30% auto -30% -80%;background:linear-gradient(90deg,transparent,rgba(224,192,106,.24),transparent);transform:skewX(-18deg);animation:buttonLight 8s ease-in-out infinite;pointer-events:none}@keyframes buttonLight{12%,100%{left:160%}}
+.hint{animation:hintPulse 3s ease-in-out infinite}@keyframes hintPulse{50%{opacity:.65;letter-spacing:.085em}}
+.lead{animation:inkGlow 7s ease-in-out infinite}@keyframes inkGlow{50%{color:var(--ink)}}
+.grain{position:fixed;inset:0;z-index:4;pointer-events:none;opacity:.035;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' opacity='.5' filter='url(%23n)'/%3E%3C/svg%3E");animation:grainDrift .4s steps(2) infinite}@keyframes grainDrift{50%{transform:translate(2px,-2px)}}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.card{transform:none!important;translate:none!important}.js .pass{clip-path:none;transform:none}.fin>*{transition:none!important}}
+</style><link rel="stylesheet" href="3d/calm.css"><link rel="stylesheet" href="3d/sarathi.css"><style>footer .enq{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}footer .enq input{flex:1 1 180px;background:#2a1f21;border:1px solid #5c4841;border-radius:6px;padding:11px 12px;color:#fff;font:500 .86rem var(--font)}footer .enq .btn{min-width:150px}@media(min-width:821px){footer{padding-right:110px}}footer .query{flex-wrap:wrap}</style></head>
 <body>
-  <header class="site-header" id="top">
-    <div class="container nav">
-      <div class="brand-lockup">
-      <a class="logo" href="#top">
-        <span class="logo-mark" aria-hidden="true"><img src="assets/img/logo-emblem.png" width="40" height="40" alt="" /></span>
-        <span class="logo-text">
-          <strong>SARVADHARA</strong>
-          <em>TRAVELS</em>
-        </span>
-      </a>
-      <span class="brand-lockup-divider" aria-hidden="true"></span>
-      <a class="logo logo-enterprises" href="courier.html" title="SarvadharaSai Enterprises">
-        <span class="logo-mark" aria-hidden="true"><img src="assets/img/sarvadharasai-enterprises-logo.jpg" width="40" height="40" alt="" /></span>
-        <span class="logo-text">
-          <strong>SARVADHARASAI</strong>
-          <em>ENTERPRISES</em>
-        </span>
-      </a>
-    </div>
-      <nav class="nav-center" aria-label="Primary">
-        <a href="#booking" data-enquiry="Flights">Flights</a>
-        <a href="#booking" data-enquiry="Holidays">Holidays</a>
-        <a href="export-import.html">Trade</a>
-        <a href="courier.html">Courier</a>
-        <a href="travel-info.html">Travel info</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <div class="nav-right">
-        <div class="lang-switch" aria-label="Language / மொழி">
-          <label class="lang-native-wrap">
-            <span class="visually-hidden">Choose language</span>
-            <select id="langNative" class="lang-native notranslate" translate="no" aria-label="Language">
-              <option value="en">EN</option>
-              <option value="ta">தமிழ்</option>
-              <option value="hi">हिन्दी</option>
-              <option value="te">తెలుగు</option>
-              <option value="ml">മലയാളം</option>
-              <option value="kn">ಕನ್ನಡ</option>
-              <option value="bn">বাংলা</option>
-              <option value="mr">मराठी</option>
-              <option value="gu">ગુજરાતી</option>
-              <option value="pa">ਪੰਜਾਬੀ</option>
-              <option value="ur">اردو</option>
-            </select>
-          </label>
-          <div id="google_translate_element" class="gt-slot" aria-hidden="true"></div>
-        </div>
-        <button class="nav-menu-btn" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer">
-          <span class="nav-menu-label">Menu</span>
-          <span class="nav-menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
-        </button>
-      </div>
-    </div>
-  </header>
+<div class="sky"></div><svg id="orbit-lines" viewBox="0 0 300 500" preserveAspectRatio="none" aria-hidden="true"><path d="M6 80 C230 10 265 180 15 190 S275 300 25 365 S200 465 275 420"/><circle cx="6" cy="80" r="2"/><circle cx="25" cy="365" r="2"/></svg><div class="progress"></div>
+<div id="stage" aria-hidden="true"></div><canvas id="dustfx" aria-hidden="true"></canvas><div class="vignette"></div><div class="grain"></div>
+<nav><a class="brand" href="#"><img src="3d/img/logo-emblem.png" alt="Sarvadhara Travels"><img src="3d/img/sarvadharasai-enterprises-logo.jpg" alt="SarvadharaSai Enterprises"><span>Sarvadhara Travels<small>Travel · Cars · Courier · Trade</small></span></a>
+<ul><li><a href="#fly">Flights</a></li><li><a href="#world">Tours</a></li><li><a href="#cars">Car Rentals</a></li><li><a href="#courier">Courier</a></li><li><a href="#trade">Export-Import</a></li><li><a href="courier.html">Courier rates</a></li><li><a href="export-import.html">Trade desk</a></li><li><a href="travel-info.html">Travel info</a></li><li><a href="terms.html">Terms</a></li><li><button class="snd" id="snd" aria-pressed="true"><i></i><i></i><i></i><i></i><span>Sound on</span></button></li></ul></nav>
+<main>
+<section class="scene hero" id="fly" data-s><div class="pin"><div class="card">
+<p class="eyebrow">Chennai <b>→</b> Everywhere</p>
+<h1 class="kin">Take off <em class="sweep">with care.</em></h1>
+<p class="lead">Flights, holidays, cars, parcels and global trade — offered to you by one trusted desk, with both hands.</p>
+<div class="btns"><a class="btn p" href="index-classic.html#booking">Find my flight</a><a class="btn g" href="#world">See the journey</a></div>
+<div class="pass" id="pass" aria-label="Your boarding pass"><div class="m"><div class="t"><span>BOARDING PASS</span><span>SARVADHARA TRAVELS</span></div>
+<div class="r"><div><span class="airportcode" data-code="MAA">MAA</span><small>CHENNAI</small></div><i></i><div id="pTo"><span class="airportcode" id="pCode">DXB</span><small id="pToC">DUBAI</small></div></div>
+<div class="g"><div><label for="pName">PASSENGER</label><input id="pName" placeholder="Type your name" maxlength="24" autocomplete="name"></div><div><label for="pCity">TO</label><input id="pCity" list="cities" maxlength="20"></div></div>
+<datalist id="cities"></datalist></div><div class="s"><span class="flightno" id="flightno">SV 001</span><span style="font-weight:800;letter-spacing:.2em;color:var(--gold-deep);font-size:.58rem">SEAT</span><b>1A</b><div class="bar"></div></div></div>
+</div></div><div class="cue"><i></i>Scroll — the journey begins</div></section>
 
-  <div class="nav-drawer-backdrop" id="navBackdrop" hidden></div>
-  <aside class="nav-drawer" id="navDrawer" hidden aria-label="Site menu">
-    <div class="nav-drawer-head">
-      <div class="nav-drawer-brand-row">
-        <span class="logo-mark" aria-hidden="true"><img src="assets/img/logo-emblem.png" width="34" height="34" alt="" /></span>
-        <span class="logo-mark" aria-hidden="true"><img src="assets/img/sarvadharasai-enterprises-logo.jpg" width="34" height="34" alt="" /></span>
-        <span class="nav-drawer-brand-stack">
-          <strong>SARVADHARA</strong>
-          <em>TRAVELS · ENTERPRISES</em>
-        </span>
-      </div>
-      <button type="button" class="nav-drawer-close" id="navDrawerClose" aria-label="Close menu">✕</button>
-    </div>
-    <nav class="nav-drawer-links" id="navLinks">
-      <a href="#booking">Enquire</a>
-      <a href="#sec-flights">Flights &amp; tickets</a>
-      <a href="#sec-holidays">Holidays</a>
-      <a href="#sec-visa">Passport &amp; visa</a>
-      <a href="travel-info.html">Travel information</a>
-      <a href="export-import.html">Export &amp; Import</a>
-      <a href="courier.html">Courier &amp; Cargo</a>
-      <a href="#services">All services</a>
-      <a href="#areas">Areas we serve</a>
-      <a href="#faq">FAQ</a>
-      <a href="#contact">Contact</a>
-      <a class="btn btn-sm btn-whatsapp" id="navWhatsApp" href="#" target="_blank" rel="noopener" data-contact="whatsapp" hidden>WhatsApp</a>
-    </nav>
-  </aside>
+<section class="scene r" id="world" data-s><div class="pin"><div class="card">
+<p class="eyebrow">01 · Sarvadhara Flights &amp; Tours</p>
+<h2 class="kin">The whole world, <em>one route away.</em></h2>
+<p class="lead">From Chennai to <span class="vcity">Dubai</span>, London, New York and beyond — best fares, smart connections and holidays planned around you.</p>
+<div class="btns"><a class="btn p" href="index-classic.html#booking">Plan my trip</a><a class="btn g" href="https://wa.me/919940299543">Ask on WhatsApp</a></div>
+<div class="localtime">Chennai <b id="tChn">--:--</b> · <span id="tCity">Dubai</span> <b id="tVis">--:--</b></div><p class="hint">↻ Drag the globe to spin it</p>
+</div></div></section>
 
-  <div class="snap-root" id="snapRoot">
-    <!-- HERO -->
-    <section class="snap-section hero-snap snap-scene" id="booking">
-      <div class="hero-brand-stage" aria-hidden="true">
-        <svg viewBox="0 0 400 360" role="img">
-          <defs>
-            <linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#f0d78a"/><stop offset="55%" stop-color="#c9a24d"/><stop offset="100%" stop-color="#8f6e2a"/>
-            </linearGradient>
-            <linearGradient id="gMaroon" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#9a2a38"/><stop offset="100%" stop-color="#5c1520"/>
-            </linearGradient>
-            <radialGradient id="gGlow" cx="50%" cy="45%" r="55%">
-              <stop offset="0%" stop-color="#c9a24d" stop-opacity="0.35"/><stop offset="100%" stop-color="#c9a24d" stop-opacity="0"/>
-            </radialGradient>
-            <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
-              <feGaussianBlur stdDeviation="1.4" result="b"/>
-              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-            </filter>
-          </defs>
-          <circle cx="200" cy="168" r="150" fill="url(#gGlow)"/>
-          <!-- arch ornament -->
-          <path class="arch-draw" d="M72 218 Q200 28 328 218" fill="none" stroke="url(#gGold)" stroke-width="1.15" opacity="0.5"/>
-          <circle cx="200" cy="42" r="3.5" fill="url(#gGold)" filter="url(#softGlow)"/>
-          <!-- orbit rings -->
-          <ellipse class="orbit-ring" cx="200" cy="158" rx="122" ry="90"/>
-          <ellipse class="orbit-ring orbit-ring--soft" cx="200" cy="158" rx="122" ry="90" transform="rotate(32 200 158)"/>
-          <!-- globe -->
-          <g class="globe-spin" filter="url(#softGlow)">
-            <circle cx="200" cy="158" r="64" fill="url(#gMaroon)" stroke="url(#gGold)" stroke-width="2.2"/>
-            <ellipse cx="200" cy="158" rx="30" ry="64" fill="none" stroke="url(#gGold)" stroke-width="1" opacity="0.65"/>
-            <ellipse cx="200" cy="158" rx="64" ry="24" fill="none" stroke="url(#gGold)" stroke-width="1" opacity="0.65"/>
-            <ellipse cx="200" cy="158" rx="48" ry="64" fill="none" stroke="url(#gGold)" stroke-width="0.7" opacity="0.4"/>
-            <path d="M148 142 Q172 124 200 146 Q228 168 256 136" fill="none" stroke="url(#gGold)" stroke-width="2" opacity="0.9"/>
-            <path d="M142 178 Q178 196 212 172 Q242 154 262 182" fill="none" stroke="url(#gGold)" stroke-width="1.4" opacity="0.7"/>
-            <path d="M155 118 Q190 108 230 122" fill="none" stroke="url(#gGold)" stroke-width="1" opacity="0.55"/>
-          </g>
-          <!-- plane on orbit (CSS offset-path + SMIL fallback via animateMotion) -->
-          <g class="orbit-plane" filter="url(#softGlow)">
-            <path d="M0 0 l14 -3.2 l3.2 -8 l3.2 8 l14 3.2 l-14 2.8 v5.5 l-3.2-2.8 l-3.2 2.8 v-5.5 z" fill="url(#gGold)"/>
-            <animateMotion dur="14s" repeatCount="indefinite" path="M200,68 A122,90 0 1,1 199.9,68" rotate="auto"/>
-          </g>
-          <!-- gold serving hands: left + right enter from the sides -->
-          <g class="hands-rise" fill="none" stroke="url(#gGold)" stroke-width="2.35" stroke-linecap="round" stroke-linejoin="round" filter="url(#softGlow)">
-            <g class="hand-left">
-              <path d="M52 300 C58 278 72 262 92 252 C108 250 122 256 132 268"/>
-              <path d="M92 252 C86 232 94 214 112 210 C124 208 132 218 130 232"/>
-              <path d="M108 248 C104 228 114 208 132 206 C144 204 150 216 146 230"/>
-              <path d="M124 252 C124 232 136 214 152 216 C164 218 166 232 160 246"/>
-              <path d="M140 262 C146 246 160 236 174 242 C186 248 186 262 176 272"/>
-              <path d="M132 268 C148 278 168 282 186 274 C196 270 204 262 210 252"/>
-              <path d="M60 304 C78 312 108 318 140 314 C162 310 178 300 188 288"/>
-            </g>
-            <g class="hand-right">
-              <path d="M348 300 C342 278 328 262 308 252 C292 250 278 256 268 268"/>
-              <path d="M308 252 C314 232 306 214 288 210 C276 208 268 218 270 232"/>
-              <path d="M292 248 C296 228 286 208 268 206 C256 204 250 216 254 230"/>
-              <path d="M276 252 C276 232 264 214 248 216 C236 218 234 232 240 246"/>
-              <path d="M260 262 C254 246 240 236 226 242 C214 248 214 262 224 272"/>
-              <path d="M268 268 C252 278 232 282 214 274 C204 270 196 262 190 252"/>
-              <path d="M340 304 C322 312 292 318 260 314 C238 310 222 300 212 288"/>
-            </g>
-          </g>
-          <!-- constellation -->
-          <g fill="url(#gGold)" class="hero-stars">
-            <circle cx="88" cy="96" r="1.6"/><circle cx="318" cy="86" r="1.9"/>
-            <circle cx="338" cy="176" r="1.3"/><circle cx="62" cy="168" r="1.5"/>
-            <circle cx="120" cy="58" r="1.1"/><circle cx="280" cy="52" r="1.2"/>
-          </g>
-        </svg>
-      </div>
-      <div class="hero-copy-mini">
-        <h1>SARVADHARA</h1>
-        <span class="gold-sub">Travels</span>
-        <div class="gold-divider" aria-hidden="true"><span class="orn">◆</span></div>
-        <p class="hero-tag">The universe is served — journeys, documents and trade from Chennai.</p>
-      </div>
+<section class="scene" id="cars" data-s><div class="pin"><div class="card">
+<p class="eyebrow">02 · Sarvadhara Car Rentals</p>
+<h2 class="kin">Land. Drive. <em>Arrive in style.</em></h2>
+<p class="lead">Airport pickups, outstation trips and temple tours — clean cars, courteous drivers, the route already planned.</p>
+<div class="chips"><span>Airport transfers</span><span>Outstation</span><span>Self-plan tours</span><span>Sedan · SUV · Tempo</span></div>
+<div class="btns" style="margin-top:22px"><a class="btn p" href="https://wa.me/919940299543">Book a car</a></div>
+</div></div></section>
 
-      <div class="search-panel" role="search" aria-label="Book or enquire">
-        <div class="search-tabs" role="tablist">
-          <button type="button" class="search-tab active" role="tab" aria-selected="true" data-type="Flights">Flights</button>
-          <button type="button" class="search-tab" role="tab" aria-selected="false" data-type="Hotels">Hotels</button>
-          <button type="button" class="search-tab" role="tab" aria-selected="false" data-type="Holidays">Holidays</button>
-          <button type="button" class="search-tab" role="tab" aria-selected="false" data-type="Visa &amp; Passport">Visa &amp; Passport</button>
-          <button type="button" class="search-tab" role="tab" aria-selected="false" data-type="Export &amp; Import">Export &amp; Import</button>
-        </div>
-        <div class="search-body">
-          <div class="trip-pills" id="tripPills" role="group" aria-label="Trip type">
-            <button type="button" class="trip-pill active" data-trip="Return">Return</button>
-            <button type="button" class="trip-pill" data-trip="One way">One way</button>
-            <button type="button" class="trip-pill" data-trip="Multi-city">Multi-city</button>
-          </div>
+<section class="scene r" id="courier" data-s><div class="pin"><div class="card">
+<p class="eyebrow">03 · SarvadharaSai Courier &amp; Cargo</p>
+<h2 class="kin">Sealed with care. <em>Delivered to the door.</em></h2>
+<p class="lead">All top carriers in one place. Live prices in seconds, pickup from your door, tracking every kilometre.</p>
+<div class="btns"><a class="btn p" href="courier.html">Get live price</a><button class="btn g" id="tapPrice">Tap the parcel</button></div>
+<div class="price" id="price">📦 Compare live prices from top carriers for your parcel · <a href="courier.html">See live prices →</a></div>
+</div></div></section>
 
-          <form id="bookingForm" action="https://formsubmit.co/sarvadharatravels@gmail.com" method="POST" novalidate>
-            <input type="hidden" name="_subject" value="New enquiry - Sarvadhara Travels" />
-            <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_template" value="table" />
-            <input type="hidden" name="_next" value="" id="formNext" data-form-next />
-            <input type="hidden" name="enquiry_type" id="travelType" value="Flights" />
-            <input type="hidden" name="trip_type" id="tripType" value="Return" />
-            <input type="hidden" name="passengers" id="passengers" value="1" />
-            <input type="hidden" name="cabin_class" id="cabinClass" value="Economy" />
-            <input type="hidden" name="route" id="routeLine" value="" />
-            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+<section class="scene" id="trade" data-s><div class="pin"><div class="card">
+<p class="eyebrow">04 · SarvadharaSai Export · Import</p>
+<h2 class="kin">From Indian hands <em>to the world's shelves.</em></h2>
+<p class="lead">Sourcing, documentation and freight for growing brands — spices, textiles and handicrafts, lifted onto the world stage.</p>
+<div class="btns"><a class="btn p" href="export-import.html">Grow globally</a><a class="btn g" href="https://wa.me/919940299543">Talk to our trade desk</a></div>
+</div></div></section>
 
-            <!-- Flights / Hotels -->
-            <div class="panel-group" data-show="Flights,Hotels">
-              <div class="search-grid">
-                <div class="search-field ap-field" id="fromField" data-ap="from">
-                  <label for="fromInput">From</label>
-                  <button type="button" class="ap-display" id="fromDisplay" hidden aria-label="Change origin">
-                    <span class="ap-code" id="fromCode"></span>
-                    <span class="ap-city" id="fromCity"></span>
-                  </button>
-                  <input type="text" class="ap-input" id="fromInput" placeholder="City or airport" autocomplete="off" spellcheck="false" aria-autocomplete="list" aria-controls="apMenu" />
-                  <input type="hidden" name="from" id="from" value="" />
-                </div>
-                <button type="button" class="swap-btn" id="swapBtn" aria-label="Swap from and to" title="Swap">⇄</button>
-                <div class="search-field ap-field" id="toField" data-ap="to">
-                  <label for="toInput">To</label>
-                  <button type="button" class="ap-display" id="toDisplay" hidden aria-label="Change destination">
-                    <span class="ap-code" id="toCode"></span>
-                    <span class="ap-city" id="toCity"></span>
-                  </button>
-                  <input type="text" class="ap-input" id="toInput" placeholder="City or airport" autocomplete="off" spellcheck="false" aria-autocomplete="list" aria-controls="apMenu" />
-                  <input type="hidden" name="to" id="to" value="" />
-                </div>
-                <div class="search-field">
-                  <label for="date">Depart</label>
-                  <input type="date" name="date" id="date" />
-                </div>
-                <div class="search-field" id="fieldReturn">
-                  <label for="returnDate">Return</label>
-                  <input type="date" name="return_date" id="returnDate" />
-                </div>
-                <div class="search-field pax-field" id="paxField">
-                  <label>Passengers &amp; class</label>
-                  <button type="button" class="pax-trigger" id="paxTrigger" aria-expanded="false" aria-haspopup="dialog">1 traveller, Economy</button>
-                  <div class="pax-popover" role="dialog" aria-label="Passengers and cabin class">
-                    <div class="pax-row">
-                      <div><strong>Adults</strong><span>12+ years</span></div>
-                      <div class="stepper">
-                        <button type="button" id="adultsDec" aria-label="Fewer adults">−</button>
-                        <span class="val" id="adultsVal">1</span>
-                        <button type="button" id="adultsInc" aria-label="More adults">+</button>
-                      </div>
-                    </div>
-                    <div class="pax-row">
-                      <div><strong>Children</strong><span>2–11 years</span></div>
-                      <div class="stepper">
-                        <button type="button" id="childrenDec" aria-label="Fewer children">−</button>
-                        <span class="val" id="childrenVal">0</span>
-                        <button type="button" id="childrenInc" aria-label="More children">+</button>
-                      </div>
-                    </div>
-                    <div class="pax-row">
-                      <div><strong>Infants</strong><span>Under 2</span></div>
-                      <div class="stepper">
-                        <button type="button" id="infantsDec" aria-label="Fewer infants">−</button>
-                        <span class="val" id="infantsVal">0</span>
-                        <button type="button" id="infantsInc" aria-label="More infants">+</button>
-                      </div>
-                    </div>
-                    <div class="pax-class">
-                      <div class="pax-class-label">Cabin class</div>
-                      <div class="trip-pills" style="margin:0">
-                        <button type="button" class="trip-pill active" data-cabin="Economy">Economy</button>
-                        <button type="button" class="trip-pill" data-cabin="Premium Economy">Premium</button>
-                        <button type="button" class="trip-pill" data-cabin="Business">Business</button>
-                        <button type="button" class="trip-pill" data-cabin="First">First</button>
-                      </div>
-                    </div>
-                    <button type="button" class="pax-done" id="paxDone">Done</button>
-                  </div>
-                </div>
-                <button type="submit" class="btn btn-search" id="sendEmail">Search / Enquire</button>
-              </div>
-            </div>
+<section class="scene final" id="go" data-s><div class="pin"><div class="fin">
+<img class="fin-logo" src="3d/img/logo-emblem.png" alt="Sarvadhara Travels emblem">
+<h2 class="fin-name">Sarvadhara</h2>
+<p class="fin-mean"><span><b>Sarva</b> · all</span><span><b>Dhara</b> · held</span></p>
+<p class="fin-tag"><em>Holding all your journeys.</em></p>
+<p class="fin-note">A meaning inspired by our name.</p>
+<p class="fin-brands">Sarvadhara Travels · SarvadharaSai Enterprises</p>
+<p class="fin-personal" id="finPersonal"></p>
+<div class="btns fin-cta"><a class="btn p" href="tel:+919940299543">Call +91 99402 99543</a><a class="btn g" href="https://wa.me/919940299543">Chat on WhatsApp</a></div>
+</div></div></section>
+</main>
+<footer><div class="logos"><img src="3d/img/logo-emblem.png" alt=""><img src="3d/img/sarvadharasai-enterprises-logo.jpg" alt=""><div>Sarvadhara Travels · SarvadharaSai Enterprises<br>Chennai, Tamil Nadu</div></div><div><a href="terms.html">Terms &amp; Conditions</a></div><div class="query"><div><b>Every journey starts with a hello.</b><p>Flights, car rentals, parcels or global trade — tell our desk what you have in mind.</p></div><div class="contact-links"><a href="tel:+919940299543">Call +91 99402 99543 ↗</a><a href="https://wa.me/919940299543">Enquire on WhatsApp ↗</a><a href="mailto:sarvadharatravels@gmail.com">Email our desk ↗</a></div><form class="enq" action="https://formsubmit.co/sarvadharatravels@gmail.com" method="POST"><input type="hidden" name="_subject" value="New enquiry - Sarvadhara Travels"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_template" value="table"><input type="hidden" name="enquiry_type" value="Homepage enquiry"><input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off"><input name="name" placeholder="Your name" required aria-label="Your name"><input name="phone" type="tel" placeholder="Phone / WhatsApp" required aria-label="Phone"><input name="message" placeholder="Flights, car, courier or trade?" aria-label="Your enquiry"><button class="btn p" type="submit">Send enquiry</button></form></div></footer>
 
-            <!-- Holidays -->
-            <div class="panel-group" data-show="Holidays" hidden>
-              <div class="search-grid compact">
-                <div class="search-field cselect" id="tourTypeSelect">
-                  <label>Tour type</label>
-                  <input type="hidden" name="tour_type" id="tourType" value="" />
-                  <button type="button" class="cselect-trigger" aria-expanded="false" aria-haspopup="listbox">
-                    <span class="cselect-label">Select…</span><span class="chev" aria-hidden="true"></span>
-                  </button>
-                  <div class="cselect-menu" role="listbox">
-                    <button type="button" class="cselect-option" role="option" data-value="Family tour">Family tour</button>
-                    <button type="button" class="cselect-option" role="option" data-value="Group tour">Group tour</button>
-                    <button type="button" class="cselect-option" role="option" data-value="Corporate tour">Corporate tour</button>
-                    <button type="button" class="cselect-option" role="option" data-value="Temple / pilgrimage">Temple / pilgrimage</button>
-                    <button type="button" class="cselect-option" role="option" data-value="Honeymoon">Honeymoon</button>
-                    <button type="button" class="cselect-option" role="option" data-value="Custom package">Custom package</button>
-                  </div>
-                </div>
-                <div class="search-field ap-field" id="tourDestField" data-ap="tourDest">
-                  <label for="tourDestInput">Destination</label>
-                  <button type="button" class="ap-display" id="tourDestDisplay" hidden aria-label="Change destination">
-                    <span class="ap-code" id="tourDestCode"></span>
-                    <span class="ap-city" id="tourDestCity"></span>
-                  </button>
-                  <input type="text" class="ap-input" id="tourDestInput" placeholder="City or airport" autocomplete="off" spellcheck="false" />
-                  <input type="hidden" name="tour_destination" id="tourDest" value="" />
-                </div>
-                <div class="search-field">
-                  <label for="tourStart">Start date</label>
-                  <input type="date" name="tour_start" id="tourStart" />
-                </div>
-                <div class="search-field">
-                  <label for="tourEnd">End date</label>
-                  <input type="date" name="tour_end" id="tourEnd" />
-                </div>
-                <div class="search-field">
-                  <label for="tourPax">Travellers</label>
-                  <input type="number" name="tour_pax" id="tourPax" min="1" max="100" value="2" />
-                </div>
-                <div class="search-field">
-                  <label for="tourNotes">Notes</label>
-                  <input type="text" name="tour_notes" id="tourNotes" placeholder="Budget, hotels…" />
-                </div>
-              </div>
-              <div class="search-actions">
-                <button type="submit" class="btn btn-search">Search / Enquire</button>
-              </div>
-            </div>
-
-            <!-- Visa & Passport -->
-            <div class="panel-group" data-show="Visa &amp; Passport" hidden>
-              <p class="assist-note">We provide <strong>application assistance</strong> — we are not a government office or embassy.</p>
-              <div class="search-grid compact">
-                <div class="search-field cselect">
-                  <label>Service</label>
-                  <input type="hidden" name="doc_service" id="docService" value="" />
-                  <button type="button" class="cselect-trigger" aria-expanded="false" aria-haspopup="listbox">
-                    <span class="cselect-label">Select…</span><span class="chev" aria-hidden="true"></span>
-                  </button>
-                  <div class="cselect-menu" role="listbox">
-                    <button type="button" class="cselect-option" role="option" data-value="New passport">New passport</button>
-                    <button type="button" class="cselect-option" role="option" data-value="Passport renewal">Passport renewal</button>
-                    <button type="button" class="cselect-option" role="option" data-value="Tatkaal assistance">Tatkaal assistance</button>
-                    <button type="button" class="cselect-option" role="option" data-value="FTI-TTP registration">FTI-TTP registration</button>
-                    <button type="button" class="cselect-option" role="option" data-value="Tourist visa">Tourist visa</button>
-                    <button type="button" class="cselect-option" role="option" data-value="Business visa">Business visa</button>
-                    <button type="button" class="cselect-option" role="option" data-value="Visit / family visa">Visit / family visa</button>
-                  </div>
-                </div>
-                <div class="search-field">
-                  <label for="visaCountry">Country (for visa)</label>
-                  <input type="text" name="visa_country" id="visaCountry" placeholder="e.g. UAE, Schengen" />
-                </div>
-                <div class="search-field">
-                  <label for="docApplicants">Applicants</label>
-                  <input type="number" name="doc_applicants" id="docApplicants" min="1" max="20" value="1" />
-                </div>
-                <div class="search-field">
-                  <label for="docCity">City / preferred PSK</label>
-                  <input type="text" name="doc_city" id="docCity" placeholder="e.g. Chennai" />
-                </div>
-              </div>
-              <div class="search-actions">
-                <button type="submit" class="btn btn-search">Search / Enquire</button>
-              </div>
-            </div>
-
-            <!-- Export & Import -->
-            <div class="panel-group" data-show="Export &amp; Import" hidden>
-              <p class="assist-note">Trade enquiries for <strong>SarvadharaSai Enterprises</strong> (Sarvadhara group). IEC registered.</p>
-              <div class="search-grid compact">
-                <div class="search-field cselect">
-                  <label>Product</label>
-                  <input type="hidden" name="trade_product" id="tradeProduct" value="" />
-                  <button type="button" class="cselect-trigger" aria-expanded="false" aria-haspopup="listbox">
-                    <span class="cselect-label">Select…</span><span class="chev" aria-hidden="true"></span>
-                  </button>
-                  <div class="cselect-menu" role="listbox">
-                    <button type="button" class="cselect-option" role="option" data-value="Spices (whole / ground)">Spices (whole / ground)</button>
-                    <button type="button" class="cselect-option" role="option" data-value="Coconut oil">Coconut oil</button>
-                    <button type="button" class="cselect-option" role="option" data-value="Rice (basmati / non-basmati)">Rice (basmati / non-basmati)</button>
-                    <button type="button" class="cselect-option" role="option" data-value="Wheat &amp; grains">Wheat &amp; grains</button>
-                    <button type="button" class="cselect-option" role="option" data-value="Pulses / other agro">Pulses / other agro</button>
-                    <button type="button" class="cselect-option" role="option" data-value="Import sourcing">Import sourcing</button>
-                  </div>
-                </div>
-                <div class="search-field">
-                  <label for="tradeQty">Quantity</label>
-                  <input type="text" name="trade_quantity" id="tradeQty" placeholder="e.g. 5 MT" />
-                </div>
-                <div class="search-field">
-                  <label for="tradeDest">Destination country</label>
-                  <input type="text" name="trade_destination" id="tradeDest" placeholder="e.g. UAE, Germany" />
-                </div>
-                <div class="search-field">
-                  <label for="tradeIncoterm">Preferred Incoterm</label>
-                  <input type="text" name="trade_incoterm" id="tradeIncoterm" placeholder="FOB / CIF / CFR / EXW" />
-                </div>
-              </div>
-              <div class="search-actions">
-                <button type="submit" class="btn btn-search">Trade enquire</button>
-                <a class="btn btn-ghost-dark btn-pill" href="export-import.html">Full trade page →</a>
-              </div>
-            </div>
-
-            <!-- Contact fields shared -->
-            <div class="search-grid compact" style="margin-top:0.85rem">
-              <div class="search-field">
-                <label for="name">Your name</label>
-                <input type="text" name="name" id="name" placeholder="Full name" required autocomplete="name" />
-              </div>
-              <div class="search-field">
-                <label for="email">Your email</label>
-                <input type="email" name="email" id="email" placeholder="you@example.com" required autocomplete="email" />
-              </div>
-              <div class="search-field">
-                <label for="phone">Phone</label>
-                <input type="tel" name="phone" id="phone" placeholder="Mobile number" autocomplete="tel" />
-              </div>
-            </div>
-            <p class="search-note">By sending an enquiry you agree to our <a href="terms.html">Terms and Conditions</a>. No payment on this site.</p>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <section class="snap-section snap-scene" style="background-image:url('assets/img/section-flights.jpg')" id="sec-flights">
-      <div class="scene-mid">
-        <p class="section-kicker">Flights · Bus · Train</p>
-        <h2>Fly, ride, arrive</h2>
-        <p class="section-sub">Domestic &amp; international tickets with clear options — group bookings, changes and check-in help.</p>
-      </div>
-      <div class="snap-cta">
-        <a class="btn btn-gold btn-pill" href="#booking" data-enquiry="Flights">Enquire flights</a>
-        <a class="btn btn-ghost btn-pill" href="#services">All services</a>
-      </div>
-      <svg class="flight-path-rail" viewBox="0 0 640 48" aria-hidden="true"><path class="fp-line" pathLength="100" d="M20 30 C 120 10, 220 40, 320 22 S 520 8, 620 28"/><circle class="fp-dot" r="3.5" fill="#c9a24d"><animateMotion dur="2.4s" begin="indefinite" fill="freeze" path="M20 30 C 120 10, 220 40, 320 22 S 520 8, 620 28"/></circle></svg>
-    </section>
-
-    <section class="snap-section snap-scene" style="background-image:url('assets/img/section-holidays.jpg')" id="sec-holidays">
-      <div class="scene-mid">
-        <p class="section-kicker">Holidays</p>
-        <h2>Where the map unfolds</h2>
-        <p class="section-sub">Pilgrimage, honeymoon, family and group tours — itineraries shaped around you.</p>
-      </div>
-      <div class="snap-cta">
-        <a class="btn btn-gold btn-pill" href="#booking" data-enquiry="Holidays">Plan a holiday</a>
-        <a class="btn btn-ghost btn-pill" href="#destinations">Popular routes</a>
-      </div>
-      <svg class="flight-path-rail" viewBox="0 0 640 48" aria-hidden="true"><path class="fp-line" pathLength="100" d="M20 28 C 160 45, 280 8, 400 30 S 560 40, 620 18"/><circle class="fp-dot" r="3.5" fill="#c9a24d"><animateMotion dur="2.4s" begin="indefinite" fill="freeze" path="M20 28 C 160 45, 280 8, 400 30 S 560 40, 620 18"/></circle></svg>
-    </section>
-
-    <section class="snap-section snap-scene" style="background-image:url('assets/img/section-passport.jpg')" id="sec-visa">
-      <div class="scene-mid">
-        <p class="section-kicker">Passport &amp; Visa</p>
-        <h2>Papers, handled with care</h2>
-        <p class="section-sub">Application assistance for Gulf to Schengen — we guide; embassies decide.</p>
-      </div>
-      <div class="snap-cta">
-        <a class="btn btn-gold btn-pill" href="#booking" data-enquiry="Visa &amp; Passport">Visa &amp; passport</a>
-        <a class="btn btn-ghost btn-pill" href="#visa-countries">Countries</a>
-      </div>
-      <svg class="flight-path-rail" viewBox="0 0 640 48" aria-hidden="true"><path class="fp-line" pathLength="100" d="M20 22 C 140 40, 260 12, 380 34 S 540 10, 620 26"/><circle class="fp-dot" r="3.5" fill="#c9a24d"><animateMotion dur="2.4s" begin="indefinite" fill="freeze" path="M20 22 C 140 40, 260 12, 380 34 S 540 10, 620 26"/></circle></svg>
-    </section>
-
-    <section class="snap-section snap-scene" style="background-image:url('assets/img/section-trade.jpg')" id="sec-trade">
-      <div class="scene-mid">
-        <p class="section-kicker">Export &amp; Import</p>
-        <h2>India to the world</h2>
-        <p class="section-sub">Spices, coconut oil, rice &amp; wheat — SarvadharaSai Enterprises. IEC registered.</p>
-      </div>
-      <div class="snap-cta">
-        <a class="btn btn-gold btn-pill" href="export-import.html">Explore trade</a>
-        <a class="btn btn-ghost btn-pill" href="#booking" data-enquiry="Export &amp; Import">Trade enquire</a>
-      </div>
-      <svg class="flight-path-rail" viewBox="0 0 640 48" aria-hidden="true"><path class="fp-line" pathLength="100" d="M20 32 C 180 8, 300 42, 420 16 S 560 36, 620 20"/><circle class="fp-dot" r="3.5" fill="#c9a24d"><animateMotion dur="2.4s" begin="indefinite" fill="freeze" path="M20 32 C 180 8, 300 42, 420 16 S 560 36, 620 20"/></circle></svg>
-    </section>
-
-    <section class="snap-section snap-scene" style="background-image:url('assets/img/section-contact.jpg')" id="sec-contact-snap">
-      <div class="scene-mid">
-        <p class="section-kicker">Contact</p>
-        <h2>Ready when you are</h2>
-        <p class="section-sub">Wherever you are in India or abroad — write, call or WhatsApp.</p>
-      </div>
-      <div class="snap-cta">
-        <a class="btn btn-gold btn-pill" href="#contact">Get in touch</a>
-        <a class="btn btn-ghost btn-pill" id="heroWhatsApp" href="#" target="_blank" rel="noopener" data-contact="whatsapp" hidden>WhatsApp</a>
-      </div>
-    </section>
-  </div>
-
-  <section class="thanks" id="thank-you" hidden>
-    <div class="thanks-card thanks-card--wide">
-      <div class="success-icon" aria-hidden="true">✓</div>
-      <h2>Enquiry received</h2>
-      <p class="thanks-ref-line" hidden>Your reference: <strong id="thanksRef">—</strong></p>
-      <p>Thank you — Sarvadhara Travels will get back to you by email shortly. Please also send the same details on WhatsApp so we can assist faster.</p>
-      <pre class="thanks-summary" id="thanksSummary" hidden></pre>
-      <div class="thanks-actions">
-        <a class="btn btn-wa-brand" id="thanksWhatsApp" href="#" target="_blank" rel="noopener" hidden>WhatsApp us</a>
-        <a class="btn btn-maroon" href="#booking" id="thanksAgain">Send another enquiry</a>
-      </div>
-      <p class="thanks-fine">Confirmation email includes this reference. Replies are by email and WhatsApp.</p>
-    </div>
-  </section>
-
-  <section class="section-plain" id="services">
-    <div class="container">
-      <header class="section-head reveal">
-        <p class="eyebrow"><span class="dot"></span> What we offer</p>
-        <h2>Travel desk from Chennai</h2>
-        <p>Open any service for a clear write-up. We assist and arrange — we are not a government office, embassy or carrier.</p>
-      </header>
-      <div class="cards-grid services-panels">
-        <article class="service-card reveal" id="svc-flights">
-          <button type="button" class="svc-toggle" aria-expanded="false" aria-controls="svc-flights-body">
-            <div class="svc-icon" aria-hidden="true"><svg viewBox="0 0 48 48" width="28" height="28"><path fill="currentColor" d="M42 22L28 16V8a2 2 0 0 0-4 0v8L10 22v4l14-3v9l-4 3v3l6-2 6 2v-3l-4-3v-9l14 3v-4z"/></svg></div>
-            <div class="svc-head-text">
-              <h3>Flight Tickets</h3>
-              <p class="svc-lead">Domestic &amp; international — group bookings, changes and check-in help.</p>
-              <span class="svc-explore">Explore</span>
-            </div>
-            <span class="svc-chevron" aria-hidden="true"></span>
-          </button>
-          <div class="svc-body" id="svc-flights-body" hidden>
-            <ul>
-              <li>Domestic and international flight tickets</li>
-              <li>Group bookings for families and teams</li>
-              <li>Date changes and cancellation assistance</li>
-              <li>Web check-in help before you travel</li>
-            </ul>
-            <a class="svc-enquire" href="#booking" data-enquiry="Flights">Enquire about flights →</a>
-          </div>
-        </article>
-        <article class="service-card reveal" id="svc-bus">
-          <button type="button" class="svc-toggle" aria-expanded="false" aria-controls="svc-bus-body">
-            <div class="svc-icon" aria-hidden="true"><svg viewBox="0 0 48 48" width="28" height="28"><rect x="6" y="16" width="36" height="16" rx="3" fill="currentColor"/><circle cx="14" cy="34" r="3.5" fill="currentColor"/><circle cx="34" cy="34" r="3.5" fill="currentColor"/></svg></div>
-            <div class="svc-head-text">
-              <h3>Bus Tickets</h3>
-              <p class="svc-lead">Sleeper &amp; AC seats on popular Tamil Nadu routes.</p>
-              <span class="svc-explore">Explore</span>
-            </div>
-            <span class="svc-chevron" aria-hidden="true"></span>
-          </button>
-          <div class="svc-body" id="svc-bus-body" hidden>
-            <ul>
-              <li>Sleeper and AC bus bookings</li>
-              <li>Popular Chennai &amp; Tamil Nadu routes</li>
-              <li>Cancellation and rebooking help</li>
-            </ul>
-            <a class="svc-enquire" href="#booking" data-enquiry="Flights">Enquire about bus →</a>
-          </div>
-        </article>
-        <article class="service-card reveal" id="svc-train">
-          <button type="button" class="svc-toggle" aria-expanded="false" aria-controls="svc-train-body">
-            <div class="svc-icon" aria-hidden="true"><svg viewBox="0 0 48 48" width="28" height="28"><rect x="4" y="18" width="40" height="14" rx="2" fill="currentColor"/><circle cx="12" cy="34" r="3" fill="currentColor"/><circle cx="36" cy="34" r="3" fill="currentColor"/></svg></div>
-            <div class="svc-head-text">
-              <h3>Train Tickets</h3>
-              <p class="svc-lead">IRCTC-assisted reservations, Tatkal and berth preferences.</p>
-              <span class="svc-explore">Explore</span>
-            </div>
-            <span class="svc-chevron" aria-hidden="true"></span>
-          </button>
-          <div class="svc-body" id="svc-train-body" hidden>
-            <ul>
-              <li>IRCTC train tickets (all classes)</li>
-              <li>Tatkal booking assistance</li>
-              <li>Waitlist follow-ups &amp; berth preferences</li>
-            </ul>
-            <a class="svc-enquire" href="#booking" data-enquiry="Flights">Enquire about train →</a>
-          </div>
-        </article>
-        <article class="service-card reveal" id="svc-tours">
-          <button type="button" class="svc-toggle" aria-expanded="false" aria-controls="svc-tours-body">
-            <div class="svc-icon" aria-hidden="true"><svg viewBox="0 0 48 48" width="28" height="28"><path fill="currentColor" d="M24 6c-6 0-11 5-11 12 0 9 11 20 11 20s11-11 11-20c0-7-5-12-11-12zm0 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/></svg></div>
-            <div class="svc-head-text">
-              <h3>Tour Organisation</h3>
-              <p class="svc-lead">Customised domestic &amp; international holidays.</p>
-              <span class="svc-explore">Explore</span>
-            </div>
-            <span class="svc-chevron" aria-hidden="true"></span>
-          </button>
-          <div class="svc-body" id="svc-tours-body" hidden>
-            <ul>
-              <li>Pilgrimage and temple tours</li>
-              <li>Honeymoon, family and group tours</li>
-              <li>Hotel bookings coordinated with your trip</li>
-            </ul>
-            <a class="svc-enquire" href="#booking" data-enquiry="Holidays">Enquire about a tour →</a>
-          </div>
-        </article>
-        <article class="service-card reveal" id="svc-passport">
-          <button type="button" class="svc-toggle" aria-expanded="false" aria-controls="svc-passport-body">
-            <div class="svc-icon" aria-hidden="true"><svg viewBox="0 0 48 48" width="28" height="28"><rect x="10" y="8" width="28" height="32" rx="3" fill="currentColor"/><rect x="16" y="14" width="16" height="10" rx="1" fill="#fff" opacity=".35"/></svg></div>
-            <div class="svc-head-text">
-              <h3>Passport Application Assistance</h3>
-              <p class="svc-lead">New passport, renewal, Tatkaal, FTI-TTP — assistance only.</p>
-              <span class="svc-explore">Explore</span>
-            </div>
-            <span class="svc-chevron" aria-hidden="true"></span>
-          </button>
-          <div class="svc-body" id="svc-passport-body" hidden>
-            <ul>
-              <li>New passport &amp; renewal applications</li>
-              <li>Passport Seva form and appointment booking</li>
-              <li>Tatkaal guidance · Minor passports</li>
-              <li>FTI-TTP online registration · ECNR/ECR guidance</li>
-            </ul>
-            <a class="svc-enquire" href="#booking" data-enquiry="Visa &amp; Passport">Enquire about passport →</a>
-          </div>
-        </article>
-        <article class="service-card reveal" id="svc-visa">
-          <button type="button" class="svc-toggle" aria-expanded="false" aria-controls="svc-visa-body">
-            <div class="svc-icon" aria-hidden="true"><svg viewBox="0 0 48 48" width="28" height="28"><path fill="currentColor" d="M8 10h32v28H8z" opacity=".2"/><path fill="currentColor" d="M12 14h24v4H12zm0 8h18v3H12zm0 7h14v3H12z"/></svg></div>
-            <div class="svc-head-text">
-              <h3>Visa Application Assistance</h3>
-              <p class="svc-lead">Gulf, Asia, UK, USA, Canada, Australia &amp; Schengen.</p>
-              <span class="svc-explore">Explore</span>
-            </div>
-            <span class="svc-chevron" aria-hidden="true"></span>
-          </button>
-          <div class="svc-body" id="svc-visa-body" hidden>
-            <p class="svc-subhead">Countries we commonly assist</p>
-            <ul class="svc-countries">
-              <li>UAE / Dubai, Bahrain, Qatar, Oman, Saudi Arabia, Kuwait</li>
-              <li>Singapore, Malaysia, Thailand, Sri Lanka</li>
-              <li>UK, USA, Canada, Australia · Schengen / Europe</li>
-            </ul>
-            <a class="svc-enquire" href="#booking" data-enquiry="Visa &amp; Passport">Enquire about visa →</a>
-          </div>
-        </article>
-        <article class="service-card reveal" id="svc-cargo">
-          <button type="button" class="svc-toggle" aria-expanded="false" aria-controls="svc-cargo-body">
-            <div class="svc-icon" aria-hidden="true"><svg viewBox="0 0 48 48" width="28" height="28"><rect x="6" y="18" width="36" height="16" rx="2" fill="currentColor"/></svg></div>
-            <div class="svc-head-text">
-              <h3>Cargo — Domestic &amp; International</h3>
-              <p class="svc-lead">Air freight, documentation and tracking — we arrange; not the carrier.</p>
-              <span class="svc-explore">Explore</span>
-            </div>
-            <span class="svc-chevron" aria-hidden="true"></span>
-          </button>
-          <div class="svc-body" id="svc-cargo-body" hidden>
-            <ul>
-              <li>Domestic &amp; international cargo booking</li>
-              <li>Door pickup · Documentation · Customs clearance assistance</li>
-              <li>Tracking support after booking</li>
-            </ul>
-            <a class="svc-enquire" href="#booking">Enquire about cargo →</a>
-          </div>
-        </article>
-        <article class="service-card reveal" id="svc-pet">
-          <button type="button" class="svc-toggle" aria-expanded="false" aria-controls="svc-pet-body">
-            <div class="svc-icon" aria-hidden="true"><svg viewBox="0 0 48 48" width="28" height="28"><ellipse cx="24" cy="30" rx="12" ry="8" fill="currentColor"/><circle cx="18" cy="18" r="7" fill="currentColor"/></svg></div>
-            <div class="svc-head-text">
-              <h3>Pet Transport</h3>
-              <p class="svc-lead">AQCS, health certificates, IATA crate guidance and airline booking help.</p>
-              <span class="svc-explore">Explore</span>
-            </div>
-            <span class="svc-chevron" aria-hidden="true"></span>
-          </button>
-          <div class="svc-body" id="svc-pet-body" hidden>
-            <ul>
-              <li>Domestic &amp; international pet relocation</li>
-              <li>AQCS certificate assistance · Health &amp; vaccination guidance</li>
-              <li>IATA-compliant crate guidance · Airline pet booking help</li>
-            </ul>
-            <a class="svc-enquire" href="#booking">Enquire about pet transport →</a>
-          </div>
-        </article>
-        <article class="service-card reveal" id="svc-trade">
-          <button type="button" class="svc-toggle" aria-expanded="false" aria-controls="svc-trade-body">
-            <div class="svc-icon" aria-hidden="true"><svg viewBox="0 0 48 48" width="28" height="28"><circle cx="24" cy="24" r="14" fill="none" stroke="currentColor" stroke-width="3"/><path d="M10 24h28M24 10c6 6 6 22 0 28M24 10c-6 6-6 22 0 28" fill="none" stroke="currentColor" stroke-width="2"/></svg></div>
-            <div class="svc-head-text">
-              <h3>Export &amp; Import</h3>
-              <p class="svc-lead">Spices, coconut oil, rice &amp; wheat — SarvadharaSai Enterprises. IEC registered.</p>
-              <span class="svc-explore">Explore</span>
-            </div>
-            <span class="svc-chevron" aria-hidden="true"></span>
-          </button>
-          <div class="svc-body" id="svc-trade-body" hidden>
-            <p>Trade services under <strong>SarvadharaSai Enterprises</strong> (a Sarvadhara group business). Spices Board, FSSAI and APEDA requirements complied with as applicable.</p>
-            <a class="svc-enquire" href="export-import.html">Open Export &amp; Import page →</a>
-          </div>
-        </article>
-      </div>
-      <p class="services-legal-note">* All services are subject to our <a href="terms.html">Terms and Conditions</a>.</p>
-    </div>
-  </section>
-
-  <section class="section-plain alt" id="visa-countries">
-    <div class="container">
-      <header class="section-head reveal">
-        <p class="eyebrow"><span class="dot"></span> Visa destinations</p>
-        <h2>Countries we commonly assist</h2>
-      </header>
-      <div class="visa-grid">
-        <article class="visa-tile reveal"><span class="vt-code">UAE</span><h3>Dubai &amp; UAE</h3><p>Tourist · Visit · Business</p></article>
-        <article class="visa-tile reveal"><span class="vt-code">GCC</span><h3>Gulf</h3><p>Bahrain · Qatar · Oman · Saudi · Kuwait</p></article>
-        <article class="visa-tile reveal"><span class="vt-code">ASIA</span><h3>Singapore &amp; SE Asia</h3><p>Malaysia · Thailand · Sri Lanka</p></article>
-        <article class="visa-tile reveal"><span class="vt-code">EU</span><h3>Schengen / Europe</h3><p>France · Germany · Italy · Switzerland</p></article>
-        <article class="visa-tile reveal"><span class="vt-code">UK</span><h3>United Kingdom</h3><p>Visit · Business guidance</p></article>
-        <article class="visa-tile reveal"><span class="vt-code">USA</span><h3>United States</h3><p>Form &amp; appointment help</p></article>
-        <article class="visa-tile reveal"><span class="vt-code">CAN</span><h3>Canada</h3><p>Checklist &amp; forms</p></article>
-        <article class="visa-tile reveal"><span class="vt-code">AUS</span><h3>Australia</h3><p>Tourist &amp; visit assistance</p></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section-plain" id="destinations">
-    <div class="container">
-      <header class="section-head reveal">
-        <p class="eyebrow"><span class="dot"></span> Popular from Chennai</p>
-        <h2>Popular routes from Chennai</h2>
-      </header>
-      <div class="stub-grid">
-        <article class="ticket-stub reveal"><div class="stub-main"><span class="stub-from">MAA</span><span class="stub-arrow">→</span><span class="stub-to">IXM</span><h3>Madurai</h3><p>Temple city · Flight · Bus · Train</p></div><div class="stub-tear" aria-hidden="true"></div><div class="stub-side"><span>SVT</span><span class="stub-num">01</span></div></article>
-        <article class="ticket-stub reveal"><div class="stub-main"><span class="stub-from">MAA</span><span class="stub-arrow">→</span><span class="stub-to">OOTY</span><h3>Ooty &amp; Coonoor</h3><p>Hill station packages</p></div><div class="stub-tear" aria-hidden="true"></div><div class="stub-side"><span>SVT</span><span class="stub-num">02</span></div></article>
-        <article class="ticket-stub reveal"><div class="stub-main"><span class="stub-from">MAA</span><span class="stub-arrow">→</span><span class="stub-to">RMM</span><h3>Rameswaram</h3><p>Pilgrimage tours</p></div><div class="stub-tear" aria-hidden="true"></div><div class="stub-side"><span>SVT</span><span class="stub-num">03</span></div></article>
-        <article class="ticket-stub reveal"><div class="stub-main"><span class="stub-from">MAA</span><span class="stub-arrow">→</span><span class="stub-to">BLR</span><h3>Bengaluru</h3><p>Flights · Bus · Train</p></div><div class="stub-tear" aria-hidden="true"></div><div class="stub-side"><span>SVT</span><span class="stub-num">04</span></div></article>
-        <article class="ticket-stub reveal"><div class="stub-main"><span class="stub-from">MAA</span><span class="stub-arrow">→</span><span class="stub-to">GOI</span><h3>Goa</h3><p>Beach holiday packages</p></div><div class="stub-tear" aria-hidden="true"></div><div class="stub-side"><span>SVT</span><span class="stub-num">05</span></div></article>
-        <article class="ticket-stub reveal"><div class="stub-main"><span class="stub-from">MAA</span><span class="stub-arrow">→</span><span class="stub-to">COK</span><h3>Kerala</h3><p>Backwaters &amp; hills</p></div><div class="stub-tear" aria-hidden="true"></div><div class="stub-side"><span>SVT</span><span class="stub-num">06</span></div></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section-plain alt" id="why">
-    <div class="container">
-      <header class="section-head reveal">
-        <p class="eyebrow"><span class="dot"></span> Why choose us</p>
-        <h2>Travel help that feels personal</h2>
-      </header>
-      <div class="stats-strip reveal" aria-label="Highlights">
-        <div class="stat"><span class="stat-num reveal-num" data-count="5" data-suffix="+">0</span><span class="stat-label">Service pillars</span></div>
-        <div class="stat"><span class="stat-num reveal-num" data-count="8" data-suffix="">0</span><span class="stat-label">Visa corridors assisted</span></div>
-        <div class="stat"><span class="stat-num reveal-num" data-count="5" data-suffix="">0</span><span class="stat-label">Trade route regions</span></div>
-        <div class="stat"><span class="stat-num reveal">IEC</span><span class="stat-label">Export code held</span></div>
-      </div>
-      <div class="why-grid">
-        <div class="why-item reveal" style="--d:0"><span class="why-num">01</span><h3>Local Chennai desk</h3><p>Easy to reach for changes, follow-ups and last-minute plans.</p></div>
-        <div class="why-item reveal" style="--d:1"><span class="why-num">02</span><h3>Tickets &amp; assistance</h3><p>Flights, bus, train, tours — plus passport and visa application help.</p></div>
-        <div class="why-item reveal" style="--d:2"><span class="why-num">03</span><h3>Honest guidance</h3><p>Clear options so you pick what fits your dates and budget.</p></div>
-        <div class="why-item reveal" style="--d:3"><span class="why-num">04</span><h3>Trade &amp; travel</h3><p>Export &amp; import via SarvadharaSai Enterprises alongside travel services.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section-plain" id="areas">
-    <div class="container">
-      <header class="section-head reveal">
-        <p class="eyebrow"><span class="dot"></span> Local reach</p>
-        <h2>Areas we serve</h2>
-        <p>Based in Chennai — helping travellers from every part of India and around the world.</p>
-      </header>
-      <ul class="areas-list reveal">
-        <li>Chennai</li><li>Bengaluru</li><li>Mumbai</li><li>Delhi</li><li>Hyderabad</li><li>Kolkata</li><li>Kerala</li><li>Across Tamil Nadu</li><li>Gulf &amp; Middle East</li><li>Singapore &amp; Malaysia</li><li>UK, Europe &amp; USA</li><li class="areas-india">Across India &amp; Worldwide</li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="section-plain alt" id="faq">
-    <div class="container">
-      <header class="section-head reveal">
-        <p class="eyebrow"><span class="dot"></span> Good to know</p>
-        <h2>Frequently asked questions</h2>
-      </header>
-      <div class="faq-list">
-        <details class="faq-item reveal" open>
-          <summary>What services does SARVADHARA TRAVELS offer?</summary>
-          <p>Flight, bus and train tickets, tour packages, passport and visa <strong>application assistance</strong>, domestic &amp; international <strong>cargo</strong>, <strong>pet transport</strong>, and <strong>export &amp; import</strong> via SarvadharaSai Enterprises. We are not a government office, embassy or carrier.</p>
-        </details>
-        <details class="faq-item reveal">
-          <summary>Where do you serve?</summary>
-          <p>We serve travellers everywhere — across India and worldwide — and arrange travel to any destination.</p>
-        </details>
-        <details class="faq-item reveal">
-          <summary>How do I book or enquire?</summary>
-          <p>Use the enquiry form on this site, write to <a href="mailto:sarvadharatravels@gmail.com">sarvadharatravels@gmail.com</a>, message WhatsApp at +91 99402 99543, or chat with Sarathi. No payment is taken on this website.</p>
-        </details>
-        <details class="faq-item reveal">
-          <summary>Do you process passports or visas yourself?</summary>
-          <p>No. We provide document guidance, checklists and appointment assistance only. Official processing is done by the relevant government or embassy channels.</p>
-        </details>
-        <details class="faq-item reveal">
-          <summary>Do you handle export and import?</summary>
-          <p>Yes — through <strong>SarvadharaSai Enterprises</strong> (a Sarvadhara group business). Spices, coconut oil, rice, wheat and other agro products. IEC registered; Spices Board, FSSAI and APEDA requirements complied with as applicable. See our <a href="export-import.html">Export &amp; Import</a> page.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <section class="section-plain" id="contact">
-    <div class="container contact-grid">
-      <div>
-        <header class="section-head left" style="text-align:left;margin:0 0 0">
-          <p class="eyebrow"><span class="dot"></span> Get in touch</p>
-          <h2>Contact SARVADHARA TRAVELS</h2>
-          <p>Bookings, passport or visa assistance, tours or trade — write to us from Chennai.</p>
-        </header>
-        <ul class="contact-list">
-          <li data-contact="phone">
-            <span class="cl-label">Phone</span>
-            <a id="contactPhone" href="tel:+919940299543">+91 99402 99543</a>
-          </li>
-          <li data-contact="whatsapp">
-            <span class="cl-label">WhatsApp</span>
-            <a class="btn btn-sm btn-whatsapp" id="contactWhatsApp" href="#" target="_blank" rel="noopener">Message on WhatsApp</a>
-          </li>
-          <li>
-            <span class="cl-label">Email</span>
-            <a id="contactEmail" href="mailto:sarvadharatravels@gmail.com">sarvadharatravels@gmail.com</a>
-          </li>
-        </ul>
-      </div>
-      <div class="contact-card reveal">
-        <h3>Ready to plan?</h3>
-        <p>Enquire by form or WhatsApp — we reply with options and next steps.</p>
-        <a class="btn btn-gold btn-block" href="#booking">Open enquiry form</a>
-        <a class="btn btn-whatsapp btn-block" id="cardWhatsApp" href="#" target="_blank" rel="noopener" data-contact="whatsapp" style="margin-top:0.65rem">Chat on WhatsApp</a>
-      </div>
-    </div>
-  </section>
-
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div>
-        <strong class="footer-brand">Sarvadhara Travels (SarvadharaSai Enterprises)</strong>
-        <p class="footer-udyam">Udyam: UDYAM-TN-34-0125107</p>
-        <p>Travel bookings, cargo &amp; pet transport assistance, tours, passport &amp; visa help, and export &amp; import via SarvadharaSai Enterprises — from Chennai.</p>
-      </div>
-      <div>
-        <p class="footer-label">Quick links</p>
-        <a href="#booking">Enquire</a>
-        <a href="#services">Services</a>
-        <a href="travel-info.html">Travel information</a>
-        <a href="export-import.html">Export &amp; Import</a>
-        <a href="courier.html">Courier &amp; Cargo</a>
-        <a href="#contact">Contact</a>
-        <a href="terms.html">Terms and Conditions</a>
-      </div>
-      <div>
-        <p class="footer-label">Reach us</p>
-        <a id="footerPhone" href="tel:+919940299543" data-contact="phone">+91 99402 99543</a>
-        <a id="footerWhatsApp" href="#" target="_blank" rel="noopener" data-contact="whatsapp">WhatsApp</a>
-        <a id="footerEmail" href="mailto:sarvadharatravels@gmail.com">sarvadharatravels@gmail.com</a>
-      </div>
-    </div>
-    <div class="container footer-bottom">
-      <p>© <span id="year"></span> Sarvadhara Travels (SarvadharaSai Enterprises) · Udyam: UDYAM-TN-34-0125107 · Chennai.</p>
-      <p class="fine"><a href="terms.html">Terms and Conditions</a> · Enquiry site only — no online payments. Passport &amp; visa services are assistance, not government processing.</p>
-    </div>
-  </footer>
-
-  <!-- Sarathi -->
-<div class="sarathi-root" id="sarathi">
-    <div class="sarathi-panel" role="dialog" aria-label="Sarathi journey guide" aria-modal="false">
-      <div class="sarathi-head">
-        <img src="assets/img/logo-emblem.png" width="40" height="40" alt="" />
-        <div>
-          <strong>Sarathi</strong>
-          <span>your journey guide</span>
-        </div>
-        <button type="button" class="sarathi-close" id="sarathiClose" aria-label="Close chat">×</button>
-      </div>
-      <div class="sarathi-msgs" id="sarathiMsgs"></div>
-      <div class="sarathi-chips">
-        <button type="button" class="sarathi-chip" data-q="Flights">Flights</button>
-        <button type="button" class="sarathi-chip" data-q="Visa &amp; Passport">Visa &amp; Passport</button>
-        <button type="button" class="sarathi-chip" data-q="Holidays">Holidays</button>
-        <button type="button" class="sarathi-chip" data-q="Export &amp; Import">Export &amp; Import</button>
-        <button type="button" class="sarathi-chip" data-q="Contact">Contact</button>
-      </div>
-      <div class="sarathi-input-row">
-        <input type="text" id="sarathiInput" placeholder="Ask Sarathi…" autocomplete="off" aria-label="Message Sarathi" />
-        <button type="button" class="sarathi-send" id="sarathiSend" aria-label="Send">↑</button>
-      </div>
-      <div class="sarathi-actions">
-        <a id="sarathiEmail" href="mailto:sarvadharatravels@gmail.com">Email us</a>
-        <a id="sarathiWhatsApp" href="#" target="_blank" rel="noopener" data-contact="whatsapp">WhatsApp us</a>
-      </div>
-      <p class="sarathi-disclaimer">Sarathi is an on-site guide, not a human. Answers are based on this website.</p>
-    </div>
-    <button type="button" class="sarathi-fab" id="sarathiFab" aria-label="Open Sarathi chat" aria-expanded="false">
-      <img src="assets/img/logo-emblem.png" width="60" height="60" alt="" />
-    </button>
-  </div>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {"@type": "Question", "name": "What services does SARVADHARA TRAVELS offer?", "acceptedAnswer": {"@type": "Answer", "text": "Flight, bus and train tickets, tour packages, passport and visa application assistance, cargo, pet transport, and export and import via SarvadharaSai Enterprises."}},
-      {"@type": "Question", "name": "Where do you serve?", "acceptedAnswer": {"@type": "Answer", "text": "Customers anywhere in India and worldwide — we work by phone, WhatsApp and email."}},
-      {"@type": "Question", "name": "How do I book or enquire?", "acceptedAnswer": {"@type": "Answer", "text": "Use the website enquiry form, email sarvadharatravels@gmail.com, WhatsApp from the site buttons, or chat with Sarathi. No payment on the website."}},
-      {"@type": "Question", "name": "Do you handle export and import?", "acceptedAnswer": {"@type": "Answer", "text": "Yes through SarvadharaSai Enterprises. Spices, coconut oil, rice, wheat and other agro products. IEC registered; Spices Board, FSSAI and APEDA requirements complied with as applicable."}}
-    ]
-  }
-  </script>
-  <script src="assets/airports.js"></script>
-  <script src="assets/airport-picker.js"></script>
-  <script src="assets/app.js"></script>
-  <script type="text/javascript">
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({
-        pageLanguage: 'en',
-        includedLanguages: 'en,ta,hi,te,ml,kn,bn,mr,gu,pa,ur',
-        layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL,
-        autoDisplay: false
-      }, 'google_translate_element');
-    }
-  </script>
-  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-</body>
-</html>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<script>document.documentElement.classList.add("js")</script>
+<script type="module" src="3d/scene.js"></script>
+<script src="3d/audio.js"></script>
+<script src="3d/ui.js"></script>
+<script src="3d/sarathi.js"></script>
+</body></html>
