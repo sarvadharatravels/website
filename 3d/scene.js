@@ -3,7 +3,7 @@ import {cinema} from './cinema.js';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';import {KTX2Loader} from 'three/addons/loaders/KTX2Loader.js';
 import {MeshoptDecoder} from 'three/addons/libs/meshopt_decoder.module.js';import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
 import {DecalGeometry} from 'three/addons/geometries/DecalGeometry.js';import {clone as skClone} from 'three/addons/utils/SkeletonUtils.js';
-const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches, small=innerWidth<820, lowEnd=(navigator.hardwareConcurrency||8)<=4||(navigator.deviceMemory||8)<=4;
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches, small=innerWidth<820;
 const MAROON=0x7A1F2B,MAROON_D=0x5c1520,GOLD=0xc9a24d,GOLD_B=0xe0c06a,CREAM=0xfaf7f2;
 const $=s=>document.querySelector(s);
 const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),lerp=(a,b,t)=>a+(b-a)*t,ease=t=>t*t*(3-2*t);
@@ -24,14 +24,14 @@ if(!reduce){
 
 /* ---------- renderer ---------- */
 const stage=$('#stage');
-const r=new THREE.WebGLRenderer({antialias:!small&&!lowEnd&&devicePixelRatio<1.5,alpha:true,powerPreference:'high-performance'});
-r.setPixelRatio(new URLSearchParams(location.search).has('record')?.65:Math.min(devicePixelRatio,small||lowEnd?1:1.25));r.setSize(stage.clientWidth,stage.clientHeight);
-r.shadowMap.enabled=!small&&!lowEnd;r.shadowMap.type=THREE.PCFShadowMap;r.shadowMap.autoUpdate=false;r.toneMapping=THREE.ACESFilmicToneMapping;r.toneMappingExposure=1.05;r.outputColorSpace=THREE.SRGBColorSpace;
+const r=new THREE.WebGLRenderer({antialias:!small,alpha:true,powerPreference:'high-performance'});
+r.setPixelRatio(new URLSearchParams(location.search).has('record')?.65:Math.min(devicePixelRatio,small?1.5:1.5));r.setSize(stage.clientWidth,stage.clientHeight);
+r.shadowMap.enabled=!small;r.shadowMap.type=THREE.PCFSoftShadowMap;r.toneMapping=THREE.ACESFilmicToneMapping;r.toneMappingExposure=1.05;r.outputColorSpace=THREE.SRGBColorSpace;
 stage.appendChild(r.domElement);
 const scene=new THREE.Scene();scene.environment=new THREE.PMREMGenerator(r).fromScene(new RoomEnvironment(),.04).texture;scene.environmentIntensity=.8;scene.fog=new THREE.Fog(0xf3ece0,14,42);
 const cam=new THREE.PerspectiveCamera(small?50:38,stage.clientWidth/stage.clientHeight,.1,120);
 scene.add(new THREE.HemisphereLight(0xfffaf0,0xd9c9a8,1.15));
-const sun=new THREE.DirectionalLight(0xfff1d6,2.4);sun.position.set(6,10,6);sun.castShadow=true;sun.shadow.mapSize.set(768,768);
+const sun=new THREE.DirectionalLight(0xfff1d6,2.4);sun.position.set(6,10,6);sun.castShadow=true;sun.shadow.mapSize.set(1024,1024);
 Object.assign(sun.shadow.camera,{left:-8,right:8,top:8,bottom:-8,near:1,far:40});scene.add(sun);scene.add(sun.target);
 const rim=new THREE.DirectionalLight(0xe0c06a,1.2);rim.position.set(-6,3,-6);scene.add(rim);
 
@@ -202,7 +202,7 @@ const house=new THREE.Group();scene.add(house);
 
 /* ---------- PORT: sea, ship, crane ---------- */
 const port=new THREE.Group();scene.add(port);
-const seaG=new THREE.PlaneGeometry(60,60,small?20:40,small?20:40);const sea=mesh(seaG,new THREE.MeshStandardMaterial({color:0xcfe0e3,roughness:.32,metalness:.1}),false);sea.rotation.x=-Math.PI/2;port.add(sea);
+const seaG=new THREE.PlaneGeometry(60,60,small?40:90,small?40:90);const sea=mesh(seaG,new THREE.MeshPhysicalMaterial({color:0xcfe0e3,roughness:.15,metalness:.1,clearcoat:1,transparent:true,opacity:.95}),false);sea.rotation.x=-Math.PI/2;port.add(sea);
 const seaBase=seaG.attributes.position.array.slice();
 const ship=new THREE.Group();port.add(ship);
 {const hs=new THREE.Shape();hs.moveTo(-3.4,0);hs.lineTo(3.0,0);hs.quadraticCurveTo(4.2,0,4.4,.9);hs.lineTo(-3.6,.9);hs.lineTo(-3.4,0);
@@ -329,12 +329,8 @@ const look=new THREE.Object3D();const smoothCam=new THREE.Vector3(0,.5,13),smoot
 const vis=(o,f)=>{o.visible=f>0.001;return f};
 
 const cine=cinema({T3:THREE,scene,cam,r,road,car,house,port,ship,crane,parcel,kraft,tape,sea,loader,small,reduce,mGold});
-window.__P=0;const clock=new THREE.Clock();let et=0,fc=0,fpsT=0,fpsN=0,lowQ=0,onScreen=true;
-new IntersectionObserver(es=>{onScreen=es[0].isIntersecting},{threshold:0}).observe(stage);
-const degrade=()=>{lowQ++;if(lowQ===1){r.setPixelRatio(Math.min(r.getPixelRatio(),1));r.setSize(stage.clientWidth,stage.clientHeight)}else if(lowQ===2){r.shadowMap.enabled=false;scene.traverse(o=>{if(o.material)o.material.needsUpdate=true})}else if(lowQ===3){r.setPixelRatio(.75);r.setSize(stage.clientWidth,stage.clientHeight)}};
+window.__P=0;const clock=new THREE.Clock();let et=0;
 function frame(){
- if(!onScreen||document.hidden){clock.getDelta();requestAnimationFrame(frame);return}
- fc++;
  const dt=window.__forceDt!=null?window.__forceDt:Math.min(clock.getDelta(),.05);if(window.__forceDt!=null)clock.getDelta();if(!reduce)et+=dt;
  P+=(PT-P)*(reduce?1:(1-Math.exp(-3.2*dt)));if(window.__forceP!=null)P=window.__forceP;window.__P=P;
  mx+=(tmx-mx)*.05;my+=(tmy-my)*.05;
@@ -441,7 +437,7 @@ function frame(){
  // the container in hand scaled: target ~ container size .78x.42x.66
  if(morph>0)parcel.scale.set(lerp(1,.97,morph),lerp(1,.7,morph),lerp(1,.82,morph));
  ship.position.y=Math.sin(et*.35)*.015;ship.rotation.z=Math.sin(et*.3)*.003;
- if(port.visible&&!reduce&&(fc&1)===0){const a=seaG.attributes.position.array;for(let i=0;i<a.length;i+=3){a[i+2]=Math.sin(seaBase[i]*.5+et)*.06+Math.cos(seaBase[i+1]*.4+et*.8)*.06}seaG.attributes.position.needsUpdate=true}
+ if(port.visible&&!reduce){const a=seaG.attributes.position.array;for(let i=0;i<a.length;i+=3){a[i+2]=Math.sin(seaBase[i]*.5+et)*.06+Math.cos(seaBase[i+1]*.4+et*.8)*.06}seaG.attributes.position.needsUpdate=true}
 
  /* FINALE */
  const fIn=ease(win(P,5.0,5.3)),fThr=win(P,5.15,5.55),fRes=ease(win(P,5.55,5.8));
@@ -454,8 +450,6 @@ function frame(){
  stage.style.opacity=String(1-fRes*.92);
  document.body.dataset.fin=P<5.5?0:P<5.62?1:P<5.75?2:P<5.88?3:4;
  sun.position.set(6,10,8);sun.target.position.set(0,0,0);
- window.__camera={pos:cam.position.toArray(),look:smoothLook.toArray(),p:P};cine.update(P,reduce?0:et,reduce?0:dt);if(r.shadowMap.enabled&&fc%3===1)r.shadowMap.needsUpdate=true;cine.render();
- if(!window.__forceDt&&lowQ<3){fpsT+=dt;fpsN++;if(fpsT>2){if(fpsN/fpsT<40&&fc>180)degrade();fpsT=0;fpsN=0}}
- requestAnimationFrame(frame)}
+ window.__camera={pos:cam.position.toArray(),look:smoothLook.toArray(),p:P};cine.update(P,reduce?0:et,reduce?0:dt);cine.render();requestAnimationFrame(frame)}
 frame();
 addEventListener('resize',()=>{cam.aspect=stage.clientWidth/stage.clientHeight;cam.updateProjectionMatrix();r.setSize(stage.clientWidth,stage.clientHeight)});
