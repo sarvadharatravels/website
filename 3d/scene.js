@@ -294,17 +294,40 @@ const readScroll=()=>{let v=0;secs.forEach((s,i)=>{const b=s.getBoundingClientRe
   const last=secs[secs.length-1].getBoundingClientRect();if(last.bottom<innerHeight)v=secs.length;PT=v;
   const mx=document.documentElement.scrollHeight-innerHeight;$('.progress').style.width=(scrollY/mx*100)+'%'};
 addEventListener('scroll',readScroll,{passive:true});readScroll();P=PT;
-/* auto-complete: when the visitor stops scrolling mid-scene, glide forward so the scene always finishes */
-(()=>{if(reduce)return;const REST=[0,1.6,2.4,3.37,3.87,4.9,5.9];let idle=0,anim=0,userT=0;
+/* journey: one swipe = one full scene (like a reel); it also plays on its own from welcome to finale */
+(()=>{if(reduce)return;const REST=[0,1.6,2.4,3.37,3.87,4.9,5.9],HOLD=[5200,5200,5200,5200,5200,5200,0],LAST=REST[REST.length-1];let anim=0,timer=0,userT=0,done=false,lock=0;
  const yFor=v=>{const i=Math.min(secs.length-1,Math.floor(v)),f=v-i,s=secs[i],top=s.getBoundingClientRect().top+scrollY,h=Math.max(0,s.offsetHeight-innerHeight);return top+f*h};
  const stop=()=>{if(anim){cancelAnimationFrame(anim);anim=0}};
- ['wheel','touchstart','keydown','pointerdown'].forEach(ev=>addEventListener(ev,()=>{userT=performance.now();stop()},{passive:true}));
- const glide=to=>{stop();const y0=scrollY,y1=Math.min(to,document.documentElement.scrollHeight-innerHeight),d=y1-y0;if(Math.abs(d)<4)return;
-  const dur=Math.min(2600,Math.max(900,Math.abs(d)*1.1)),t0=performance.now();
-  const step=t=>{const k=Math.min(1,(t-t0)/dur),e=k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2;scrollTo(0,y0+d*e);anim=k<1?requestAnimationFrame(step):0};anim=requestAnimationFrame(step)};
- const settle=()=>{if(anim)return;const ae=document.activeElement;if(ae&&/INPUT|TEXTAREA|SELECT/.test(ae.tagName))return;if(performance.now()-userT<120){idle=setTimeout(settle,200);return}const v=PT;if(v>=REST[REST.length-1]-.01)return;
-  if(REST.some(r=>Math.abs(v-r)<.03))return;const next=REST.find(r=>r>v);if(next!=null)glide(yFor(next))};
- addEventListener('scroll',()=>{if(anim)return;clearTimeout(idle);idle=setTimeout(settle,450)},{passive:true});})();
+const typing=()=>{const ae=document.activeElement;return ae&&/INPUT|TEXTAREA|SELECT/.test(ae.tagName)};
+ const glide=(to,cb)=>{stop();const y0=scrollY,y1=Math.min(to,document.documentElement.scrollHeight-innerHeight),d=y1-y0;if(Math.abs(d)<4){cb&&cb();return}
+  const dur=Math.min(2600,Math.max(1300,Math.abs(d)*.9)),t0=performance.now();
+  const step=t=>{const k=Math.min(1,(t-t0)/dur),e=k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2;scrollTo(0,y0+d*e);if(k<1)anim=requestAnimationFrame(step);else{anim=0;cb&&cb()}};anim=requestAnimationFrame(step)};
+ const next=()=>{clearTimeout(timer);if(done)return;if(typing()||document.hidden||performance.now()-userT<2500){timer=setTimeout(next,1200);return}
+  const v=PT,r=REST.find(x=>x>v+.02);if(r==null){done=true;return}
+  glide(yFor(r),()=>{if(r>=REST[REST.length-1]-.01){done=true;return}timer=setTimeout(next,HOLD[REST.indexOf(r)])})};
+
+ const idx=()=>{const v=PT;let b=0;REST.forEach((r,n)=>{if(v>=r-.05)b=n});return b};
+ const inSnap=dir=>{const yl=yFor(LAST);return scrollY<yl-3||(dir<0&&scrollY<=yl+3)};
+ const skip=t=>t&&t.closest&&t.closest('input,textarea,select,.sarathi,#sarathi,[class*="sarathi"],.lq-list');
+ const go=dir=>{const now=performance.now();if(anim||now<lock)return;userT=now;clearTimeout(timer);
+  let n=idx();const atRest=Math.abs(PT-REST[n])<.05;n=dir>0?Math.min(REST.length-1,n+1):(atRest?Math.max(0,n-1):n);
+  lock=now+400;glide(yFor(REST[n]),()=>{lock=performance.now()+250;done=REST[n]>=LAST-.01;if(!done)timer=setTimeout(next,HOLD[n])})};
+ addEventListener('wheel',e=>{if(skip(e.target)||Math.abs(e.deltaY)<4)return;const dir=Math.sign(e.deltaY);if(!inSnap(dir))return;e.preventDefault();go(dir)},{passive:false});
+ let ty=null;addEventListener('touchstart',e=>{ty=skip(e.target)?null:e.touches[0].clientY;userT=performance.now()},{passive:true});
+ addEventListener('touchmove',e=>{if(ty==null)return;const dir=Math.sign(ty-e.touches[0].clientY)||1;if(inSnap(dir))e.preventDefault()},{passive:false});
+ addEventListener('touchend',e=>{if(ty==null)return;const d=ty-e.changedTouches[0].clientY;ty=null;if(Math.abs(d)<30)return;const dir=Math.sign(d);if(inSnap(dir))go(dir)},{passive:true});
+ addEventListener('keydown',e=>{if(skip(e.target))return;const m={ArrowDown:1,PageDown:1,' ':1,ArrowUp:-1,PageUp:-1}[e.key];if(!m||!inSnap(m))return;e.preventDefault();go(m)});
+ let idl=0;addEventListener('scroll',()=>{if(anim)return;clearTimeout(idl);idl=setTimeout(()=>{if(anim||typing()||!inSnap(1))return;const n=idx();if(Math.abs(PT-REST[n])<.05)return;go(1)},500)},{passive:true});
+ timer=setTimeout(next,HOLD[0]);
+ /* swipe hint */
+ const hint=document.createElement('div');hint.className='swipehint';const touch=matchMedia('(pointer: coarse)').matches;
+ hint.innerHTML='<i></i><i></i><span>'+(touch?'Swipe down':'Scroll down')+' · journey plays on its own</span>';document.body.appendChild(hint);
+ const st=document.createElement('style');st.textContent=`.swipehint{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:20;display:flex;flex-direction:column;align-items:center;gap:0;pointer-events:none;transition:opacity .6s}
+.swipehint i{width:14px;height:14px;border-right:2px solid #c9a24d;border-bottom:2px solid #c9a24d;transform:rotate(45deg);margin-top:-5px;opacity:0;animation:swh 1.8s infinite}
+.swipehint i+i{animation-delay:.25s}.swipehint span{margin-top:8px;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:#a6853a;white-space:nowrap}
+@keyframes swh{0%{opacity:0;transform:translateY(-6px) rotate(45deg)}50%{opacity:1}100%{opacity:0;transform:translateY(8px) rotate(45deg)}}
+@media (max-width:819px){.swipehint span{font-size:.56rem}}`;document.head.appendChild(st);
+ (function hv(){hint.style.opacity=PT>5.3?0:1;requestAnimationFrame(hv)})();})();
 let mx=0,my=0,tmx=0,tmy=0;addEventListener('pointermove',e=>{tmx=e.clientX/innerWidth-.5;tmy=e.clientY/innerHeight-.5});
 addEventListener('deviceorientation',e=>{if(e.gamma!=null){tmx=clamp(e.gamma/40,-.5,.5);tmy=clamp((e.beta-45)/60,-.5,.5)}});
 
