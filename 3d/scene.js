@@ -294,6 +294,17 @@ const readScroll=()=>{let v=0;secs.forEach((s,i)=>{const b=s.getBoundingClientRe
   const last=secs[secs.length-1].getBoundingClientRect();if(last.bottom<innerHeight)v=secs.length;PT=v;
   const mx=document.documentElement.scrollHeight-innerHeight;$('.progress').style.width=(scrollY/mx*100)+'%'};
 addEventListener('scroll',readScroll,{passive:true});readScroll();P=PT;
+/* auto-complete: when the visitor stops scrolling mid-scene, glide forward so the scene always finishes */
+(()=>{if(reduce)return;const REST=[0,1.6,2.4,3.37,3.87,4.9,5.9];let idle=0,anim=0,userT=0;
+ const yFor=v=>{const i=Math.min(secs.length-1,Math.floor(v)),f=v-i,s=secs[i],top=s.getBoundingClientRect().top+scrollY,h=Math.max(0,s.offsetHeight-innerHeight);return top+f*h};
+ const stop=()=>{if(anim){cancelAnimationFrame(anim);anim=0}};
+ ['wheel','touchstart','keydown','pointerdown'].forEach(ev=>addEventListener(ev,()=>{userT=performance.now();stop()},{passive:true}));
+ const glide=to=>{stop();const y0=scrollY,y1=Math.min(to,document.documentElement.scrollHeight-innerHeight),d=y1-y0;if(Math.abs(d)<4)return;
+  const dur=Math.min(2600,Math.max(900,Math.abs(d)*1.1)),t0=performance.now();
+  const step=t=>{const k=Math.min(1,(t-t0)/dur),e=k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2;scrollTo(0,y0+d*e);anim=k<1?requestAnimationFrame(step):0};anim=requestAnimationFrame(step)};
+ const settle=()=>{if(anim)return;const ae=document.activeElement;if(ae&&/INPUT|TEXTAREA|SELECT/.test(ae.tagName))return;if(performance.now()-userT<120){idle=setTimeout(settle,200);return}const v=PT;if(v>=REST[REST.length-1]-.01)return;
+  if(REST.some(r=>Math.abs(v-r)<.03))return;const next=REST.find(r=>r>v);if(next!=null)glide(yFor(next))};
+ addEventListener('scroll',()=>{if(anim)return;clearTimeout(idle);idle=setTimeout(settle,450)},{passive:true});})();
 let mx=0,my=0,tmx=0,tmy=0;addEventListener('pointermove',e=>{tmx=e.clientX/innerWidth-.5;tmy=e.clientY/innerHeight-.5});
 addEventListener('deviceorientation',e=>{if(e.gamma!=null){tmx=clamp(e.gamma/40,-.5,.5);tmy=clamp((e.beta-45)/60,-.5,.5)}});
 
