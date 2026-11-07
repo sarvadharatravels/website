@@ -186,7 +186,25 @@ footer .logos{display:flex;gap:12px;align-items:center}footer img{height:40px;bo
 .lead{animation:inkGlow 7s ease-in-out infinite}@keyframes inkGlow{50%{color:var(--ink)}}
 .grain{position:fixed;inset:0;z-index:4;pointer-events:none;opacity:.035;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' opacity='.5' filter='url(%23n)'/%3E%3C/svg%3E");animation:grainDrift .4s steps(2) infinite}@keyframes grainDrift{50%{transform:translate(2px,-2px)}}
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.card{transform:none!important;translate:none!important}.js .pass{clip-path:none;transform:none}.fin>*{transition:none!important}}
-</style><link rel="stylesheet" href="3d/calm.css"><link rel="stylesheet" href="3d/sarathi.css"><style>footer .enq{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}footer .enq input{flex:1 1 180px;background:#2a1f21;border:1px solid #5c4841;border-radius:6px;padding:11px 12px;color:#fff;font:500 .86rem var(--font)}footer .enq .btn{min-width:150px}@media(min-width:821px){footer{padding-right:110px}}footer .query{flex-wrap:wrap}</style></head>
+</style><link rel="stylesheet" href="3d/calm.css"><link rel="stylesheet" href="3d/sarathi.css"><style>footer .enq{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}footer .enq input{flex:1 1 180px;background:#2a1f21;border:1px solid #5c4841;border-radius:6px;padding:11px 12px;color:#fff;font:500 .86rem var(--font)}footer .enq .btn{min-width:150px}@media(min-width:821px){footer{padding-right:110px}}footer .query{flex-wrap:wrap}</style><style>
+.lq{margin:20px 0 6px;max-width:440px;pointer-events:auto}
+.lq-row{display:flex;gap:14px;flex-wrap:wrap}
+.lq label{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:4px}.lq .lq-kg{flex:0 0 72px}
+.lq label span{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep)}
+.lq input{width:100%;min-width:0;box-sizing:border-box;font:inherit;font-size:1rem;color:var(--ink);background:transparent;border:0;border-bottom:1px solid rgba(166,133,58,.55);padding:6px 0;outline:none;transition:border-color .3s}
+.lq input:focus{border-bottom-color:var(--maroon)}
+.lq-go{margin-top:16px;font:inherit;font-weight:600;font-size:.9rem;color:#fff;background:linear-gradient(120deg,var(--maroon),var(--maroon-deep));border:0;border-radius:999px;padding:11px 24px;cursor:pointer;transition:transform .25s,box-shadow .25s}
+.lq-go:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(122,31,43,.25)}.lq-go[disabled]{opacity:.6;cursor:wait}
+.lq-msg{margin:10px 0 0;font-size:.82rem;color:var(--ink-soft)}
+.lq-list{list-style:none;margin:10px 0 0;padding:0}
+.lq-list li{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid rgba(201,162,77,.3);opacity:0;transform:translateX(-10px);animation:lqIn .5s cubic-bezier(.16,1,.3,1) forwards}
+.lq-list b{color:var(--maroon);font-size:1.05rem;min-width:62px}.lq-list .n{flex:1;font-size:.86rem;color:var(--ink)}.lq-list .n small{display:block;color:var(--ink-soft);font-size:.72rem}
+.lq-list a{font-size:.8rem;font-weight:600;color:var(--maroon);text-decoration:none;white-space:nowrap}.lq-list a:hover{text-decoration:underline}
+@keyframes lqIn{to{opacity:1;transform:none}}
+@media (max-width:819px){#courier .pin{transition:padding-top .6s cubic-bezier(.16,1,.3,1)}#courier.has-q .pin{padding-top:84px}.lq-list{padding-right:64px}.lq-list li{padding:7px 0}}
+@media (prefers-reduced-motion:reduce){.lq-list li{animation:none;opacity:1;transform:none}}
+</style>
+</head>
 <body>
 <div class="sky"></div><svg id="orbit-lines" viewBox="0 0 300 500" preserveAspectRatio="none" aria-hidden="true"><path d="M6 80 C230 10 265 180 15 190 S275 300 25 365 S200 465 275 420"/><circle cx="6" cy="80" r="2"/><circle cx="25" cy="365" r="2"/></svg><div class="progress"></div>
 <div id="stage" aria-hidden="true"></div><canvas id="dustfx" aria-hidden="true"></canvas><div class="vignette"></div><div class="grain"></div>
@@ -224,7 +242,15 @@ footer .logos{display:flex;gap:12px;align-items:center}footer img{height:40px;bo
 <p class="eyebrow">03 · SarvadharaSai Courier &amp; Cargo</p>
 <h2 class="kin">Sealed with care. <em>Delivered to the door.</em></h2>
 <p class="lead">All top carriers in one place. Live prices in seconds, pickup from your door, tracking every kilometre.</p>
-<div class="btns"><a class="btn p" href="courier.html">Get live price</a><button class="btn g" id="tapPrice">Tap the parcel</button></div>
+<div class="btns"><a class="btn p" href="#liveQuote" id="lqJump">Get live price</a><button class="btn g" id="tapPrice">Tap the parcel</button></div>
+<form class="lq" id="liveQuote" novalidate autocomplete="off">
+<div class="lq-row"><label><span>From PIN</span><input id="lqFrom" inputmode="numeric" maxlength="6" pattern="\d{6}" placeholder="600001" required></label>
+<label><span>To PIN</span><input id="lqTo" inputmode="numeric" maxlength="6" pattern="\d{6}" placeholder="110001" required></label>
+<label class="lq-kg"><span>Weight kg</span><input id="lqKg" type="number" min="0.1" step="0.1" value="1" required></label></div>
+<button class="lq-go" type="submit">Get live quote</button>
+<p class="lq-msg" id="lqMsg" aria-live="polite">Live prices from top carriers, in seconds.</p>
+<ol class="lq-list" id="lqList"></ol>
+</form>
 <div class="price" id="price">📦 Compare live prices from top carriers for your parcel · <a href="courier.html">See live prices →</a></div>
 </div></div></section>
 
@@ -255,4 +281,21 @@ footer .logos{display:flex;gap:12px;align-items:center}footer img{height:40px;bo
 <script src="3d/audio.js"></script>
 <script src="3d/ui.js"></script>
 <script src="3d/sarathi.js"></script>
+<script>
+(()=>{const f=document.getElementById('liveQuote');if(!f)return;const $=i=>document.getElementById(i),msg=$('lqMsg'),list=$('lqList'),btn=f.querySelector('.lq-go');
+const API='https://shiprocket-rates.sarvadhara.workers.dev/rates';const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+$('lqJump')&&$('lqJump').addEventListener('click',e=>{e.preventDefault();f.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>$('lqFrom').focus({preventScroll:true}),500)});
+f.addEventListener('submit',async e=>{e.preventDefault();const a=$('lqFrom').value.trim(),b=$('lqTo').value.trim(),w=parseFloat($('lqKg').value);list.innerHTML='';
+ if(!/^\d{6}$/.test(a)){msg.textContent='Enter a 6-digit pickup PIN.';$('lqFrom').focus();return}
+ if(!/^\d{6}$/.test(b)){msg.textContent='Enter a 6-digit delivery PIN.';$('lqTo').focus();return}
+ if(!(w>0)){msg.textContent='Enter the parcel weight in kg.';$('lqKg').focus();return}
+ msg.textContent='Fetching live prices…';btn.disabled=true;
+ try{const r=await fetch(API+'?'+new URLSearchParams({pickup:a,delivery:b,weight:String(w),cod:'0'}),{headers:{Accept:'application/json'}});const d=await r.json();
+  if(!r.ok||!d.couriers||!d.couriers.length)throw 0;
+  const c=d.couriers.slice().sort((x,y)=>x.price-y.price).slice(0,4);
+  f.closest('section').classList.add('has-q');msg.textContent='Best live prices for '+w+' kg, '+a+' to '+b+':';
+  list.innerHTML=c.map((x,i)=>{const q=new URLSearchParams({pickup:a,delivery:b,weight:w});return '<li style="animation-delay:'+(i*.09)+'s"><b>₹'+Math.round(x.price)+'</b><span class="n">'+esc(x.name)+(x.etd?'<small>Est. delivery '+esc(x.etd)+'</small>':'')+'</span><a href="courier.html?'+q+'#book">Book →</a></li>'}).join('');
+ }catch(_){msg.innerHTML='Live prices are busy right now. <a href="courier.html#book">Get a quote on the courier page</a> or <a href="https://wa.me/919940299543">WhatsApp us</a>.'}
+ finally{btn.disabled=false}});})();
+</script>
 </body></html>

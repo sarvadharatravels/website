@@ -602,6 +602,15 @@
       return data;
     }
 
+    (function prefillFromHome(){
+      const q = new URLSearchParams(location.search);
+      if (!quoteForm || !q.get('pickup') || !q.get('weight')) return;
+      if (quoteScope) { quoteScope.value = 'Domestic'; quoteScope.dispatchEvent(new Event('change')); }
+      if (quotePickup) quotePickup.value = q.get('pickup');
+      if (quoteDelivery && q.get('delivery')) quoteDelivery.value = q.get('delivery');
+      if (quoteWeight) quoteWeight.value = q.get('weight');
+      setTimeout(() => { if (quoteForm.requestSubmit) quoteForm.requestSubmit(); }, 0);
+    })();
     if (quoteForm) {
       quoteForm.addEventListener('submit', async (e) => {
         e.preventDefault();
