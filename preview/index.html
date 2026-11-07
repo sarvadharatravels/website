@@ -7,6 +7,7 @@
 :root{--cream:#faf7f2;--maroon:#7A1F2B;--maroon-deep:#5c1520;--gold:#c9a24d;--gold-bright:#e0c06a;--gold-deep:#a6853a;--ink:#1a1214;--ink-soft:#3d3336;--muted:#6a6064;--line:#e8dfd0;--font:"Manrope",system-ui,sans-serif;--display:"Playfair Display",Georgia,serif}
 *{box-sizing:border-box;margin:0;padding:0}html,body{height:100%;overflow:hidden;background:var(--cream);font-family:var(--font);color:var(--ink);-webkit-font-smoothing:antialiased}
 body.free{overflow:auto}
+.snd{display:inline-flex;align-items:center;gap:3px;background:rgba(255,255,255,.7);border:1px solid var(--line);border-radius:30px;padding:6px 11px;font:700 .68rem var(--font);color:var(--ink-soft);cursor:pointer;letter-spacing:.06em}.snd i{width:2px;height:10px;background:var(--gold);border-radius:2px;animation:eq 1s ease-in-out infinite}.snd i:nth-child(2){animation-delay:.2s}.snd i:nth-child(3){animation-delay:.4s}.snd span{margin-left:5px}.snd.off i,.snd.wait i{animation:none;height:3px}@keyframes eq{50%{transform:scaleY(.3)}}
 nav{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:14px 4vw;background:linear-gradient(180deg,rgba(250,247,242,.92),rgba(250,247,242,0))}
 .brand{display:flex;align-items:center;gap:8px;text-decoration:none}.brand img{height:38px;border-radius:6px}.brand span{font-family:var(--display);font-weight:600;font-size:1.1rem;color:var(--maroon);line-height:1.1}.brand small{display:block;font-family:var(--font);font-size:.6rem;letter-spacing:.18em;color:var(--gold-deep);text-transform:uppercase}
 .dots{display:flex;gap:7px}.dots i{width:22px;height:3px;border-radius:2px;background:rgba(122,31,43,.18);overflow:hidden;position:relative}.dots i b{position:absolute;inset:0;background:var(--gold);transform:scaleX(0);transform-origin:left}
@@ -46,7 +47,7 @@ footer form{display:flex;flex-wrap:wrap;gap:8px;flex-basis:100%}footer input{fle
 .copy{top:auto;bottom:70px;transform:none;left:5vw;right:5vw}h1,h2{font-size:2.15rem}.lead{font-size:.9rem;margin-top:10px}.cta{margin-top:12px}
 .has-q .lead{display:none}.lq{margin-top:10px;padding:10px}.lq-list{max-height:130px}.brand img+img,.brand small{display:none}.dots i{width:12px}}
 </style></head><body>
-<nav><a class="brand" href="../"><img src="../3d/img/logo-emblem.png" alt="Sarvadhara Travels"><img src="../3d/img/sarvadharasai-enterprises-logo.jpg" alt="SarvadharaSai Enterprises"><span>Sarvadhara Travels<small>Travel · Cars · Courier · Trade</small></span></a><div class="dots" id="dots"></div></nav>
+<nav><a class="brand" href="../"><img src="../3d/img/logo-emblem.png" alt="Sarvadhara Travels"><img src="../3d/img/sarvadharasai-enterprises-logo.jpg" alt="SarvadharaSai Enterprises"><span>Sarvadhara Travels<small>Travel · Cars · Courier · Trade</small></span></a><div style="display:flex;align-items:center;gap:12px"><button class="snd" id="snd" aria-pressed="true"><i></i><i></i><i></i><i></i><span>Sound on</span></button><div class="dots" id="dots"></div></div></nav>
 <svg id="thread" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="gg" x1="0" x2="1"><stop offset="0" stop-color="#a6853a"/><stop offset=".5" stop-color="#fff3cf"/><stop offset="1" stop-color="#c9a24d"/></linearGradient></defs><path id="tp" d=""/><circle id="spark" r="0.9"/></svg>
 <main id="reel">
 <section class="sc" data-v="scene1-flight" data-t="M-5 92 C 25 85, 55 60, 105 8"><video muted playsinline preload="none"></video><div class="veil"></div><div class="copy"><p class="eyebrow">Chennai → Everywhere</p><h1>Take off <em>with care.</em></h1><p class="lead">Flights, holidays, cars, parcels and global trade — offered to you by one trusted desk, with both hands.</p><a class="cta" href="https://wa.me/919940299543">Plan my trip</a></div></section>
@@ -71,7 +72,7 @@ function draw(i){cancelAnimationFrame(raf);tp.setAttribute('d',S[i].dataset.t);c
   tp.style.strokeDashoffset=L*(1-e);const pt=tp.getPointAtLength(L*e);sp.setAttribute('cx',pt.x);sp.setAttribute('cy',pt.y);bars.forEach((b,j)=>b.style.transform='scaleX('+(j<i?1:j==i?p:0)+')');if(p<1)raf=requestAnimationFrame(step)};raf=requestAnimationFrame(step)}
 function go(i){if(i<0)return;if(i>=N){setFoot(true);return}if(foot){setFoot(false);if(i===cur)return}if(i===cur)return;
  load(i);load(i+1);const prev=S[cur];cur=i;const s=S[i],v=s.querySelector('video');const sp0=sp.getAttribute('cx');s.style.setProperty('--cx',(sp0||50)+'%');s.style.setProperty('--cy',(sp.getAttribute('cy')||50)+'%');
- S.forEach(x=>x!==s&&x.classList.remove('on'));s.classList.add('on');v.currentTime=0;const pl=v.play();pl&&pl.catch(()=>{});
+ S.forEach(x=>x!==s&&x.classList.remove('on'));s.classList.add('on');v.currentTime=0;window.__applySnd&&__applySnd();const pl=v.play();pl&&pl.catch(()=>{});
  if(prev){const pv=prev.querySelector('video');setTimeout(()=>{if(!prev.classList.contains('on'))pv.pause()},1200)}
  B.classList.toggle("end",i===N-1);B.classList.toggle("s3",i===2);draw(i);lock=performance.now()}
 function setFoot(on){foot=on;B.classList.toggle('foot',on)}
@@ -86,6 +87,11 @@ addEventListener('touchend',e=>{if(ty===null)return;const dy=ty-e.changedTouches
 addEventListener('keydown',e=>{if(skip(e.target))return;if(['ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();nav(1)}if(['ArrowUp','PageUp'].includes(e.key)){e.preventDefault();nav(-1)}});
 document.addEventListener('input',()=>held=performance.now());
 document.addEventListener('visibilitychange',()=>{const v=S[cur]&&S[cur].querySelector('video');if(!v)return;document.hidden?v.pause():(!v.ended&&v.play().catch(()=>{}))});
+const sb=document.getElementById('snd');let snd=localStorage.getItem('sv-sound')!=='off',unl=false;
+const sui=()=>{sb.classList.toggle('off',!snd);sb.classList.toggle('wait',snd&&!unl);sb.querySelector('span').textContent=!snd?'Sound off':unl?'Sound on':'Tap for sound';sb.setAttribute('aria-pressed',snd)};
+window.__applySnd=()=>{S.forEach((s,j)=>{const v=s.querySelector('video');v.muted=!(snd&&unl&&j===cur);v.volume=1})};
+const unlock=()=>{if(unl)return;unl=true;sui();__applySnd()};['pointerdown','touchend','keydown','wheel'].forEach(t=>addEventListener(t,unlock,{once:false,passive:true}));
+sb.addEventListener('click',e=>{e.stopPropagation();if(!unl){unl=true}else{snd=!snd;localStorage.setItem('sv-sound',snd?'on':'off')}sui();__applySnd()});sui();
 go(0)})();
 </script>
 <script>
