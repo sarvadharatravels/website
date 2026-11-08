@@ -170,9 +170,9 @@ $('bkX').addEventListener('click',()=>{B.classList.remove('bk-open');document.qu
 (()=>{const S=[...document.querySelectorAll('.sc')],N=S.length,dots=document.getElementById('dots'),tp=document.getElementById('tp'),sp=document.getElementById('spark'),B=document.body;
 const mob=matchMedia('(max-aspect-ratio:1/1)').matches,suf=mob?'-mobile.mp4':'-web.mp4';
 S.forEach((s,i)=>{dots.insertAdjacentHTML('beforeend','<i><b></b></i>');s.querySelectorAll('h1,h2:not(.fin-name)').forEach(h=>{let k=0;const wrap=n=>{[...n.childNodes].forEach(c=>{if(c.nodeType==3){const f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(t=>{if(!t.trim()){f.append(t);return}const w=document.createElement('span');w.className='w';w.style.setProperty('--i',k++);w.textContent=t;f.append(w)});c.replaceWith(f)}else wrap(c)})};wrap(h)});
- const v=s.querySelector('video');v.poster='preview/media/'+s.dataset.v+'-poster.jpg';v.addEventListener('ended',()=>{if(cur===i)auto()})});
+ const v=s.querySelector('video');v.poster='preview/media/'+s.dataset.v+'-poster.jpg?v=2';v.addEventListener('ended',()=>{if(cur===i)auto()})});
 const bars=[...dots.querySelectorAll('b')];let cur=-1,lock=0,raf=0,foot=false;
-const load=i=>{const v=S[i]&&S[i].querySelector('video');if(v&&!v.src){v.src='preview/media/'+S[i].dataset.v+suf;v.preload='auto';v.load()}};
+const load=i=>{const v=S[i]&&S[i].querySelector('video');if(v&&!v.src){v.src='preview/media/'+S[i].dataset.v+suf+'?v=2';v.preload='auto';v.load()}};
 function draw(i){cancelAnimationFrame(raf);tp.setAttribute('d',S[i].dataset.t);const L=tp.getTotalLength();tp.style.strokeDasharray=L;const v=S[i].querySelector('video'),t0=performance.now();
  const step=now=>{const d=(v.duration&&!isNaN(v.duration))?v.duration*1000:8000,p=Math.min(1,Math.max(v.currentTime*1000,(now-t0)*.98)/d),e=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2;
   tp.style.strokeDashoffset=L*(1-e);const pt=tp.getPointAtLength(L*e);sp.setAttribute('cx',pt.x);sp.setAttribute('cy',pt.y);bars.forEach((b,j)=>b.style.transform='scaleX('+(j<i?1:j==i?p:0)+')');if(p<1)raf=requestAnimationFrame(step)};raf=requestAnimationFrame(step)}
