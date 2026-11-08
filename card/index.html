@@ -1,0 +1,72 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sarvadhara Travels · e-Card</title><meta name="description" content="Sarvadhara Travels digital card: flights, holidays, hotels, car rentals, courier and export-import. Tap to call, WhatsApp or book.">
+<meta property="og:title" content="Sarvadhara Travels · e-Card"><meta property="og:description" content="Tap to call, WhatsApp, save contact or book flights, hotels, cars, courier and trade."><meta property="og:image" content="https://sarvadharatravels.in/logo-512.png"><meta property="og:url" content="https://sarvadharatravels.in/card/"><meta name="theme-color" content="#7A1F2B">
+<link rel="icon" href="/favicon.ico"><link rel="canonical" href="https://sarvadharatravels.in/card/">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,500&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#faf7f2;--maroon:#7A1F2B;--gold:#c9a24d;--gold-bright:#e0c06a;--gold-deep:#a6853a;--ink:#1a1214;--ink-soft:#3d3336;--muted:#6a6064;--line:#e8dfd0;--font:"Manrope",system-ui,sans-serif;--display:"Playfair Display",Georgia,serif}
+*{box-sizing:border-box;margin:0;padding:0}body{min-height:100vh;display:grid;place-items:center;background:radial-gradient(80% 60% at 50% 30%,#fffdf8,#f1e8d8);font-family:var(--font);color:var(--ink);padding:18px}
+.card{position:relative;width:min(420px,100%);background:var(--cream);border-radius:22px;padding:30px 24px 24px;text-align:center;box-shadow:0 30px 80px rgba(122,31,43,.18),0 0 0 1px rgba(201,162,77,.5);overflow:hidden;animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
+.card:before{content:"";position:absolute;inset:10px;border:1px solid rgba(201,162,77,.45);border-radius:16px;pointer-events:none}
+.card:after{content:"";position:absolute;top:-50%;left:-60%;width:40%;height:200%;background:linear-gradient(90deg,transparent,rgba(255,243,207,.7),transparent);transform:rotate(20deg);animation:shine 5s 1.5s infinite;pointer-events:none}
+@keyframes shine{0%{left:-60%}30%,100%{left:130%}}@keyframes rise{from{opacity:0;transform:translateY(30px) scale(.97)}}
+.logo{width:150px;animation:float 5s ease-in-out infinite}@keyframes float{50%{transform:translateY(-6px)}}
+h1{font-family:var(--display);font-weight:600;color:var(--maroon);font-size:1.9rem;letter-spacing:.04em;margin-top:6px}
+.sub{color:var(--gold-deep);font-weight:800;letter-spacing:.2em;font-size:.62rem;text-transform:uppercase;margin-top:4px}
+.tag{font-family:var(--display);font-style:italic;color:var(--ink-soft);margin:10px 0 2px}
+.svcs{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 14px;margin:12px 0 4px;color:var(--gold-deep);font-weight:800;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase}
+.rule{height:1px;margin:16px 10px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.acts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.acts a{display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none;color:var(--maroon);font-weight:800;font-size:.66rem;letter-spacing:.06em}
+.acts i{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:1.3rem;background:#fff;border:1px solid var(--gold);box-shadow:0 6px 18px rgba(201,162,77,.25);transition:.25s}.acts a:hover i{background:var(--maroon);transform:translateY(-3px)}
+.line{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 4px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink);font-weight:700;font-size:.9rem}.line span{color:var(--muted);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;font-weight:800}.line b{color:var(--maroon)}
+.book{display:block;width:100%;margin-top:16px;padding:15px;border:0;border-radius:10px;background:linear-gradient(100deg,#7A1F2B,#5c1520);color:#fff;font:800 .95rem var(--font);letter-spacing:.04em;cursor:pointer;box-shadow:0 12px 30px rgba(122,31,43,.3)}
+.pick{display:none;margin-top:12px}.pick.on{display:block;animation:rise .5s both}
+.save{display:block;margin-top:10px;padding:13px;border:1px solid var(--gold);border-radius:10px;color:var(--maroon);font-weight:800;text-decoration:none;font-size:.88rem;background:#fff}
+.qr{display:flex;align-items:center;gap:14px;margin-top:16px;text-align:left;font-size:.72rem;color:var(--muted)}.qr img{width:84px;height:84px;background:#fff;padding:4px;border-radius:8px;border:1px solid var(--line)}.qr b{display:block;color:var(--maroon);font-size:.82rem}
+.share{background:none;border:0;color:var(--gold-deep);font:800 .7rem var(--font);letter-spacing:.14em;text-transform:uppercase;margin-top:14px;cursor:pointer}
+.in>*{opacity:0;animation:up .7s cubic-bezier(.2,.8,.2,1) forwards}@keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.bk-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}.bk-chips button{border:1px solid var(--gold);background:rgba(255,255,255,.82);backdrop-filter:blur(6px);color:var(--maroon);font:700 .8rem var(--font);padding:10px 15px;border-radius:40px;cursor:pointer;transition:.25s}.bk-chips button:hover,.bk-chips button.on{background:var(--maroon);color:#fff;border-color:var(--maroon)}
+.bk-sheet{position:fixed;left:50%;bottom:0;transform:translate(-50%,105%);width:min(560px,100%);z-index:28;background:#fffdf8;border:1px solid var(--gold);border-bottom:0;border-radius:18px 18px 0 0;box-shadow:0 -20px 60px rgba(122,31,43,.18);padding:20px 20px 24px;transition:transform .55s cubic-bezier(.2,.8,.2,1);text-align:left}
+body.bk-open .bk-sheet{transform:translate(-50%,0)}@media(max-width:820px){.bk-sheet{padding-bottom:74px}}.bk-sheet h3{font-family:var(--display);color:var(--maroon);font-size:1.5rem;font-weight:600;margin-bottom:12px}.bk-x{position:absolute;right:14px;top:12px;border:0;background:none;font-size:1.5rem;color:var(--muted);cursor:pointer}
+.bk-g{display:grid;grid-template-columns:1fr 1fr;gap:10px}.bk-g label{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:800}.bk-g input,.bk-g select{display:block;width:100%;margin-top:3px;border:0;border-bottom:1px solid var(--line);background:transparent;font:600 .92rem var(--font);color:var(--ink);padding:6px 0;outline:none}.bk-g input:focus{border-color:var(--gold)}.bk-g .w2{grid-column:1/-1}
+.bk-send{width:100%;margin-top:16px;padding:13px;border:0;border-radius:6px;background:var(--maroon);color:#fff;font:700 .9rem var(--font);cursor:pointer}.bk-note{font-size:.72rem;color:var(--muted);margin-top:8px;text-align:center}.bk-note a{color:var(--maroon);font-weight:700}
+
+.bk-chips button{font-size:.74rem;padding:8px 11px}
+</style></head><body>
+<main class="card in" id="card">
+<img class="logo" src="../3d/img/logo-emblem-t.png" alt="Sarvadhara Travels">
+<h1>SARVADHARA TRAVELS</h1><p class="sub">SarvadharaSai Enterprises</p>
+<p class="tag">Holding all your journeys.</p>
+<div class="svcs"><span>Flights</span><span>Holidays</span><span>Hotels</span><span>Car Rentals</span><span>Courier</span><span>Export · Import</span></div>
+<div class="rule"></div>
+<div class="acts"><a href="tel:+919940299543"><i>📞</i>Call</a><a href="https://wa.me/919940299543?text=Hello%20Sarvadhara%20Travels"><i>💬</i>WhatsApp</a><a href="mailto:sarvadharatravels@gmail.com"><i>✉️</i>Email</a><a href="https://sarvadharatravels.in/"><i>🌐</i>Website</a></div>
+<div style="margin-top:12px"><a class="line" href="https://sarvadharatravels.in/"><span>Web</span><b>sarvadharatravels.in</b></a><a class="line" href="mailto:sarvadharatravels@gmail.com"><span>Email</span><b>sarvadharatravels@gmail.com</b></a><a class="line" href="tel:+919940299543"><span>Phone</span><b>+91 99402 99543</b></a><div class="line"><span>Office</span><b>Chennai, Tamil Nadu</b></div></div>
+<button class="book" id="bookBtn">✈ Book now</button>
+<div class="pick" id="pick"><div class="bk-chips" id="bkChips"><button data-k="flight">✈ Flights</button><button data-k="holiday">🌴 Holidays</button><button data-k="hotel">🏨 Hotels</button><button data-k="car">🚘 Car Rental</button><button data-k="visa">🛂 Passport &amp; Visa</button><button data-k="courier">📦 Courier</button><button data-k="trade">🚢 Export · Import</button></div></div>
+<a class="save" href="sarvadhara.vcf" download>＋ Save contact</a>
+<div class="qr"><img src="qr.svg" alt="QR code to this card"><div><b>Scan to open this card</b>Share it with friends and family. One tap books flights, hotels, cars, courier and trade.</div></div>
+<button class="share" id="share">Share this card ↗</button>
+</main>
+<div class="bk-sheet" id="bkSheet" role="dialog" aria-label="Booking"><button class="bk-x" id="bkX" aria-label="Close">×</button><h3 id="bkH">Book</h3><form id="bkF" action="https://formsubmit.co/sarvadharatravels@gmail.com" method="POST"><input type="hidden" name="_subject" id="bkSub" value="New booking request - Sarvadhara"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_template" value="table"><input type="hidden" name="service" id="bkSvc"><input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off"><div class="bk-g" id="bkG"></div><div class="bk-g" style="margin-top:10px"><label>Your name<input name="name" required autocomplete="name"></label><label>Phone / WhatsApp<input name="phone" type="tel" required autocomplete="tel"></label></div><button class="bk-send" type="submit">Send booking request</button><p class="bk-note">Our desk confirms the best price on WhatsApp or a call · <a href="https://wa.me/919940299543">WhatsApp now</a></p></form></div>
+<script>
+(()=>{const F={flight:['Flight booking',[['From','from','Chennai'],['To','to','Dubai'],['Travel date','date','','date'],['Passengers','passengers','1','number']]],
+holiday:['Holidays & Tours',[['Destination','tour_destination','Kerala, Dubai, Singapore…','','w2'],['Start date','tour_start','','date'],['Travellers','tour_pax','2','number']]],
+hotel:['Hotel booking',[['City / hotel','hotel_city','Where to stay','','w2'],['Check-in','checkin','','date'],['Nights','nights','2','number'],['Guests','guests','2','number'],['Rooms','rooms','1','number']]],
+car:['Car rental',[['Pickup','pickup','Chennai Airport'],['Drop','drop','Destination'],['Date','date','','date'],['Car type','car_type','Sedan / SUV / Innova']]],
+visa:['Passport & Visa assistance',[['Service','doc_service','Visa for UAE, passport renewal…','','w2'],['Applicants','doc_applicants','1','number'],['City','doc_city','Chennai']]],
+trade:['Export · Import enquiry',[['Product','trade_product','Spices, textiles…','','w2'],['Destination country','trade_destination','UAE, USA…'],['Quantity','trade_qty','e.g. 500 kg']]]};
+const $=i=>document.getElementById(i),B=document.body;
+document.getElementById('bkChips').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const k=b.dataset.k;
+ if(k==='courier'){location.href='../courier.html#book';return}if(k==='trade'&&false)return;
+ document.querySelectorAll('#bkChips button').forEach(x=>x.classList.toggle('on',x===b));const [t,fs]=F[k];$('bkH').textContent=t;$('bkSvc').value=t;$('bkSub').value='New booking request - '+t;
+ $('bkG').innerHTML=fs.map(([l,n,ph,ty,c])=>'<label'+(c?' class="'+c+'"':'')+'>'+l+'<input name="'+n+'" '+(ty?'type="'+ty+'" ':'')+(ty==='number'?'min="1" value="'+ph+'"':'placeholder="'+ph+'"')+'></label>').join('');
+ B.classList.add('bk-open')});
+$('bkX').addEventListener('click',()=>{B.classList.remove('bk-open');document.querySelectorAll('#bkChips button').forEach(x=>x.classList.remove('on'))});
+})();
+</script>
+<script>
+document.querySelectorAll('#card>*').forEach((e,i)=>e.style.animationDelay=(.15+i*.12)+'s');
+document.getElementById('bookBtn').onclick=()=>document.getElementById('pick').classList.toggle('on');
+document.getElementById('share').onclick=async()=>{const d={title:'Sarvadhara Travels',text:'Flights, holidays, hotels, cars, courier & trade — Sarvadhara Travels',url:'https://sarvadharatravels.in/card/'};if(navigator.share){try{await navigator.share(d)}catch(e){}}else{location.href='https://wa.me/?text='+encodeURIComponent(d.text+' '+d.url)}};
+</script></body></html>
