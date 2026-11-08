@@ -117,14 +117,14 @@ addEventListener('keydown',e=>{if(skip(e.target))return;if(['ArrowDown','PageDow
 document.addEventListener('input',()=>held=performance.now());
 document.addEventListener('visibilitychange',()=>{const v=S[cur]&&S[cur].querySelector('video');if(!v)return;document.hidden?v.pause():(!v.ended&&v.play().catch(()=>{}))});
 const sb=document.getElementById('snd');let snd=localStorage.getItem('sv-sound')!=='off',unl=false,quiet=false;
-const hush=()=>{if(quiet)return;quiet=true;S.forEach(s=>{const v=s.querySelector('video');const f=setInterval(()=>{v.volume=Math.max(0,v.volume-.1);if(v.volume<=0){clearInterval(f);v.muted=true}},40)});sui()};
+const hush=()=>{if(quiet)return;quiet=true;S.forEach(s=>{const v=s.querySelector('video');let n=0;const f=setInterval(()=>{n++;try{v.volume=Math.max(0,v.volume-.1)}catch(e){}if(v.volume<=0||n>12){clearInterval(f);v.muted=true;v.volume=1}},40)});sui()};
 document.addEventListener('focusin',e=>{if(e.target.matches('input,textarea,select'))hush()});
 document.addEventListener('click',e=>{if(e.target.closest('.bk-chips button,.cta,.lq-go,.lq-list a,footer a,footer button,a[href*="wa.me"],a[href*="tel:"],a[href*="book"],a[href*=".html"],#sarathi,.sarathi,[class*=sarathi]'))hush()},true);
 new MutationObserver(()=>{if(B.classList.contains('foot'))hush()}).observe(B,{attributes:true,attributeFilter:['class']});
 const sui=()=>{sb.classList.toggle('off',!snd);sb.classList.toggle('wait',snd&&!unl);sb.querySelector('span').textContent=(!snd||quiet)?'Sound off':unl?'Sound on':'Tap for sound';sb.classList.toggle('off',!snd||quiet);sb.setAttribute('aria-pressed',snd)};
-window.__applySnd=()=>{S.forEach((s,j)=>{const v=s.querySelector('video');v.muted=!(snd&&unl&&!quiet&&j===cur);v.volume=1})};
-const unlock=()=>{if(unl)return;unl=true;sui();__applySnd()};['pointerdown','touchend','keydown','wheel'].forEach(t=>addEventListener(t,unlock,{once:false,passive:true}));
-sb.addEventListener('click',e=>{e.stopPropagation();if(!unl){unl=true}else if(quiet){quiet=false;snd=true}else{snd=!snd;localStorage.setItem('sv-sound',snd?'on':'off')}sui();__applySnd()});sui();
+window.__applySnd=()=>{S.forEach((s,j)=>{const v=s.querySelector('video');const on=snd&&unl&&!quiet&&j===cur;v.muted=!on;v.volume=1;if(on&&v.paused&&!v.ended){const p=v.play();p&&p.catch(()=>{v.muted=true;v.play().catch(()=>{})})}})};
+const unlock=e=>{if(unl||(e&&e.target&&e.target.closest&&e.target.closest('#snd')))return;unl=true;sui();__applySnd()};['pointerup','touchend','click','keydown'].forEach(t=>addEventListener(t,unlock,{passive:true}));
+sb.addEventListener('click',e=>{e.stopPropagation();if(!unl){unl=true;snd=true;quiet=false}else if(quiet||!snd){quiet=false;snd=true}else{snd=false}localStorage.setItem('sv-sound',snd?'on':'off');sui();__applySnd()});sui();
 go(0)})();
 </script>
 <script>
