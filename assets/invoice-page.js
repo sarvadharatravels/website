@@ -1,7 +1,9 @@
 (function () {
   "use strict";
 
-  const CC_EMAIL = "sarvadharatravels@gmail.com";
+  const TRAVEL_EMAIL = "sarvadharatravels@gmail.com";
+  const ENTERPRISE_EMAIL = "Sarvadharasai.Enterprises@gmail.com";
+  const CC_EMAIL = TRAVEL_EMAIL;
   const LS_SEQ = "sdt_invoice_seq_v2";
   const LS_DRAFTS = "sdt_invoice_drafts_v2";
   const LS_HISTORY = "sdt_invoice_history_v2";
@@ -11,10 +13,43 @@
     "Flight ticket",
     "Hotel",
     "Holiday package",
+    "Car rental",
     "Visa/Passport assistance",
+    "Courier",
+    "Cargo",
     "Export/Import",
     "Other",
   ];
+  const ENTERPRISE_SERVICES = new Set(["Courier", "Cargo", "Export/Import"]);
+
+  function isEnterpriseService(type) {
+    return ENTERPRISE_SERVICES.has(type);
+  }
+
+  function invoiceNameFor(type) {
+    return isEnterpriseService(type) ? "SarvadharaSai Enterprises" : "Sarvadhara Travels";
+  }
+
+  function defaultEmailFor(type) {
+    return isEnterpriseService(type) ? ENTERPRISE_EMAIL : TRAVEL_EMAIL;
+  }
+
+  function isDefaultEmail(value) {
+    const v = (value || "").trim().toLowerCase();
+    return !v || v === TRAVEL_EMAIL.toLowerCase() || v === ENTERPRISE_EMAIL.toLowerCase();
+  }
+
+  function applyIssuerFromService() {
+    const type = (el("serviceType") && el("serviceType").value) || SERVICE_TYPES[0];
+    const name = invoiceNameFor(type);
+    if (el("bizInvoiceName")) el("bizInvoiceName").value = name;
+    const emailEl = el("bizEmail");
+    if (emailEl && isDefaultEmail(emailEl.value)) {
+      emailEl.value = defaultEmailFor(type);
+    }
+    const termsSheet = el("invoiceTermsSheet");
+    if (termsSheet) termsSheet.hidden = isEnterpriseService(type);
+  }
   const GST_RATES = [0, 5, 12, 18];
   const PAY_MODES = ["Cash", "UPI", "Bank transfer", "Card", "Cheque", "Pending"];
 
@@ -46,6 +81,7 @@
     const preset = AIR_PRESETS[key];
     if (!preset) return;
     if (el("serviceType")) el("serviceType").value = "Flight ticket";
+    applyIssuerFromService();
     const gst = serviceFeeGstRate();
     addLine({
       desc: "Air fare (pass-through) — " + preset.category,
@@ -267,6 +303,7 @@
       date: el("invDate").value || todayISO(),
       due: el("invDue").value || "",
       serviceType: el("serviceType").value,
+      invoiceName: invoiceNameFor(el("serviceType").value),
       custName: el("custName").value.trim(),
       custAddr: el("custAddr").value.trim(),
       custPhone: el("custPhone").value.trim(),
@@ -353,7 +390,7 @@
         <div class="sheet-brand">
           <img src="../assets/img/logo-emblem.png" alt="" width="64" height="64" />
           <div>
-            <strong>Sarvadhara Travels (SarvadharaSai Enterprises)</strong>
+            <strong>${escapeHtml(s.invoiceName)}</strong>
             <div class="muted tiny">Udyam: UDYAM-TN-34-0125107</div>
             <div class="muted tiny">${s.biz.address ? escapeHtml(s.biz.address) : "Address on request"}</div>
             <div class="muted tiny">${[s.biz.phone, s.biz.email].filter(Boolean).map(escapeHtml).join(" · ")}</div>
@@ -399,9 +436,11 @@
         <div><span class="k">Payment</span> ${escapeHtml(s.payMode)}</div>
         ${s.notes ? `<div><span class="k">Notes</span> ${escapeHtml(s.notes)}</div>` : ""}
         ${s.terms ? `<div><span class="k">Terms</span> ${escapeHtml(s.terms)}</div>` : ""}
-        <p class="disclaimer">This is a computer-generated invoice from Sarvadhara Travels (SarvadharaSai Enterprises). Subject to Terms and Conditions.</p>
+        <p class="disclaimer">This is a computer-generated invoice from ${escapeHtml(s.invoiceName)}. Subject to Terms and Conditions.</p>
         <div class="sheet-tnc-footer">
-          <p><strong>Sarvadhara Travels (SarvadharaSai Enterprises).</strong> <strong>Udyam: UDYAM-TN-34-0125107.</strong> <strong>SARVADHARA TRAVELS IS ONLY AN AGENT. WE WILL ONLY PROVIDE SUPPORT.</strong> <strong>Sarvadhara Travels acts only as a booking agent and provides support/assistance only. Being only an agent, we shall not be held liable for any cost, loss, claim or compensation of any kind arising from the travel or the airline's services.</strong> Tickets are governed by airline fare rules and conditions of carriage; any compensation is payable by the airline alone under applicable law (DGCA CAR, Montreal Convention, EU261/UK261, US DOT, Canada APPR and others). Refunds only after the airline refunds, to the original payer. Passengers must check ticket details and are responsible for passports, visas and health documents. Full Terms apply. Governed by Indian law; Chennai jurisdiction. Write to Sarvadhara Travels at sarvadharatravels@gmail.com and we will respond to you shortly.</p>
+          ${isEnterpriseService(s.serviceType)
+            ? `<p><strong>SarvadharaSai Enterprises.</strong> <strong>Udyam: UDYAM-TN-34-0125107.</strong> <strong>SARVADHARASAI ENTERPRISES IS ONLY AN AGENT. WE WILL ONLY PROVIDE SUPPORT.</strong> Full Terms apply. Governed by Indian law; Chennai jurisdiction. Write to SarvadharaSai Enterprises at ${escapeHtml(s.biz.email || ENTERPRISE_EMAIL)} and we will respond to you shortly.</p>`
+            : `<p><strong>Sarvadhara Travels.</strong> <strong>Udyam: UDYAM-TN-34-0125107.</strong> <strong>SARVADHARA TRAVELS IS ONLY AN AGENT. WE WILL ONLY PROVIDE SUPPORT.</strong> <strong>Sarvadhara Travels acts only as a booking agent and provides support/assistance only. Being only an agent, we shall not be held liable for any cost, loss, claim or compensation of any kind arising from the travel or the airline's services.</strong> Tickets are governed by airline fare rules and conditions of carriage; any compensation is payable by the airline alone under applicable law (DGCA CAR, Montreal Convention, EU261/UK261, US DOT, Canada APPR and others). Refunds only after the airline refunds, to the original payer. Passengers must check ticket details and are responsible for passports, visas and health documents. Full Terms apply. Governed by Indian law; Chennai jurisdiction. Write to Sarvadhara Travels at ${escapeHtml(s.biz.email || TRAVEL_EMAIL)} and we will respond to you shortly.</p>`}
         </div>
       </div>
     `;
@@ -416,7 +455,16 @@
     el("invNo").value = p.no || peekNextInvoiceNo();
     el("invDate").value = p.date || todayISO();
     el("invDue").value = p.due || "";
-    el("serviceType").value = p.serviceType || SERVICE_TYPES[0];
+    const sel = el("serviceType");
+    const typ = p.serviceType || SERVICE_TYPES[0];
+    if (sel && typ && ![...sel.options].some((o) => o.value === typ)) {
+      const opt = document.createElement("option");
+      opt.value = typ;
+      opt.textContent = typ;
+      sel.appendChild(opt);
+    }
+    if (sel) sel.value = typ;
+    applyIssuerFromService();
     el("custName").value = p.custName || "";
     el("custAddr").value = p.custAddr || "";
     el("custPhone").value = p.custPhone || "";
@@ -534,7 +582,7 @@
       return;
     }
     const text = [
-      `*Sarvadhara Travels* — Invoice ${s.no}`,
+      `*${s.invoiceName}* — Invoice ${s.no}`,
       `Date: ${formatDateIN(s.date)}${s.due ? " · Due: " + formatDateIN(s.due) : ""}`,
       `Customer: ${s.custName || "—"}`,
       `Service: ${s.serviceType}`,
@@ -569,6 +617,7 @@
     el("invDate").value = todayISO();
     el("invDue").value = addDaysISO(todayISO(), 7);
     el("serviceType").value = SERVICE_TYPES[0];
+    applyIssuerFromService();
     el("custName").value = "";
     el("custAddr").value = "";
     el("custPhone").value = "";
@@ -592,6 +641,7 @@
     el("invDate").value = "2026-10-28";
     el("invDue").value = "2026-11-04";
     el("serviceType").value = "Flight ticket";
+    applyIssuerFromService();
     el("custName").value = "Demo Customer (Sample Only)";
     el("custAddr").value = "12 Fiction Lane, Sample Nagar, Chennai 600000";
     el("custPhone").value = "9000000001";
@@ -646,6 +696,13 @@
     });
 
     $$('input[name="taxMode"]').forEach((r) => r.addEventListener("change", render));
+
+    if (el("serviceType")) {
+      el("serviceType").addEventListener("change", () => {
+        applyIssuerFromService();
+        render();
+      });
+    }
 
     el("addLine").addEventListener("click", () => addLine({ desc: "", qty: 1, rate: "", gst: 18 }));
     $$("[data-air-preset]").forEach((btn) => {
