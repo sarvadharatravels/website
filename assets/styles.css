@@ -244,7 +244,8 @@ iframe.goog-te-banner-frame { display: none !important; }
   font-family: var(--font); font-style: normal; font-size: 0.48rem;
   letter-spacing: 0.2em; font-weight: 700; color: var(--gold);
 }
-@media (max-width: 980px) {
+/* Hide Enterprises wordmark before the dual lockup collides with the centre nav */
+@media (max-width: 1480px) {
   .logo-enterprises .logo-text { display: none; }
 }
 @media (max-width: 760px) {
@@ -2069,3 +2070,18 @@ body.ap-sheet-open { overflow: hidden; }
   .page-courier .cx-specs-inner { grid-template-columns: 1fr 1fr; }
   .page-courier .cx-tile-cta .btn-pill { min-width: 140px; }
 }
+
+/* Legal / contact pages: contact details and wrapped footer legal links */
+.page-legal .legal-body p { margin: 0.7rem 0; line-height: 1.7; }
+.page-legal .legal-body ul { margin: 0.5rem 0 0.7rem; line-height: 1.7; }
+.page-legal .legal-body li { margin-bottom: 0.35rem; }
+.page-legal .contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+.page-legal .contact-grid { margin-top: 0.5rem; }
+.page-legal .contact-list a { color: var(--maroon); font-weight: 700; word-break: break-word; }
+.page-legal .legal-contact p { margin: 0.45rem 0; }
+.footer-bottom .fine { max-width: 100%; line-height: 1.7; }
